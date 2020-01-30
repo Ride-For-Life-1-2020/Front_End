@@ -7,9 +7,9 @@ import { theme } from '../style';
 const Wrapper = styled.div`
     position: fixed;
     width: 100%;
-    background: ${theme.color.lightGreen};
+    background: ${theme.color.white};
     z-index: 1000;
-    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.5)
+    box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5)
 `
 
 const MenuItemIcon = styled.div`
@@ -27,13 +27,17 @@ const MenuText = styled.div`
     a {
         display: block;
         text-decoration: none;
-        color: #000000;
+        color: ${theme.color.lightGreen};
         padding: 20px 20px;
         transition: ease-in .3s;
 
+        &.sign-up {
+            background-color: ${theme.color.lightGreen};
+            color: ${theme.color.white};
+        }
+
         :hover {
-            background-color: ${theme.color.white};
-            color: ${theme.color.lightGreen};
+            text-decoration: underline;
         }
     }
 `
@@ -55,6 +59,17 @@ const styles = {
 
     me: {
         padding: "10px 0"
+    },
+    logo: {
+        color: theme.color.lightGreen,
+    },
+
+    logoSpan: {
+        color: theme.color.black,
+    },
+    signUp: {
+        backgroundColor: theme.color.lightGreen,
+        color: theme.color.white,
     }
 }
 
@@ -63,8 +78,8 @@ const AppBar = ({isLogged}) => {
     return(
         <Wrapper>
             <Container style={classes.container}>
-                <Logo>
-                    ride4Life
+                <Logo style={classes.logo}>
+                    ride<span style={classes.logoSpan}>4</span>Life
                 </Logo>
                 {isLogged &&  
                     <MenuItemIcon>
@@ -86,7 +101,7 @@ const AppBar = ({isLogged}) => {
                         </MenuItemIcon> 
                         <MenuItemIcon>
                             <MenuText>
-                                <NavLink to="/sign-up">
+                                <NavLink className="sign-up" to="/sign-up">
                                     Sign up
                                 </NavLink>
                             </MenuText>
