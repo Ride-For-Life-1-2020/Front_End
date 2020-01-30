@@ -1,6 +1,7 @@
 PVD Document
 ____________
-https://github.com/Ride-For-Life-1-2020/Front_End.git
+https://docs.google.com/document/d/1-PKqSaBhlZjVlKvtGwjtclaYex2PwfN3v_ktRlXBbZI/edit#heading=h.8k66cyet0u4q
+
 
 1.1. Contribution Instructions
 ------------------------------
