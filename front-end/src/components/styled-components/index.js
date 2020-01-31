@@ -33,4 +33,42 @@ export const Logo  = styled.h1`
     font-size: 1.8rem;
     letter-spacing: -2px;
     color: #000;
+`;
+
+export const FormWrapper = styled.form`
+    @media (min-width: 875px) {
+        width: 46%;
+        margin: 0 auto;
+    }
 `
+
+// Inputs
+export const TextField = styled.input`
+    width: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    :focus {
+        border: 2px solid #339AF0;
+    }
+`; 
+
+export const Label = styled.label`
+    display: block;
+    padding: 15px 0px 1px 5px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+
+`;
+
+export const TextFieldWrapper = styled.div`
+    position: relative;
+    margin-bottom: 15px;
+    ${props => (props.width ?
+        `
+        width: ${props.width};
+        `
+        : null
+    )}
+`;

@@ -101,7 +101,7 @@ const AppBar = ({isLogged}) => {
                         </MenuItemIcon> 
                         <MenuItemIcon>
                             <MenuText>
-                                <NavLink className="sign-up" to="/sign-up">
+                                <NavLink className="sign-up" to="/sign-up/who-ami">
                                     Sign up
                                 </NavLink>
                             </MenuText>
