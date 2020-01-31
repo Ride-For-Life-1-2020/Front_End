@@ -41,9 +41,9 @@ export const FormWrapper = styled.form`
         width: 46%;
         margin: 0 auto;
     }
-    -webkit-box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.5);
-    box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.2);
     padding: 25px 25px;
     border-radius: 7px;
 `
@@ -55,7 +55,7 @@ export const TextField = styled.input`
     border-radius: 5px;
     padding: 10px;
     :focus {
-        border: 2px solid #339AF0;
+        border: 2px solid ${theme.color.lightGreen};
     }
 `; 
 
@@ -90,7 +90,7 @@ export const Button = styled.button`
     color: white;
 
     :hover {
-        background-color: #388e3c;
+        background-color: ${theme.color.darkerGreen};
     }
 
     @media (min-width: 600px) {

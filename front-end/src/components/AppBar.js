@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     width: 100%;
     background: ${theme.color.white};
     z-index: 1000;
-    box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5)
+    box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.2)
 `
 
 const MenuItemIcon = styled.div`
@@ -36,7 +36,8 @@ const MenuText = styled.div`
         }
 
         :hover {
-            text-decoration: underline;
+            background-color: ${theme.color.darkerGreen};
+            color: ${theme.color.white};
         }
     }
 `
