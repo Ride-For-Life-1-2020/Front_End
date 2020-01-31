@@ -7,10 +7,12 @@ const BtnWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 55.9vh;
     width: 250px;
     margin: 0 auto;
-    
+    @media (min-width: 1024px) {
+        height: 57.2vh;
+    }
 `
 
 const WhoAmI = (props) => {
