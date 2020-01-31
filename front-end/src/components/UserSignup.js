@@ -1,8 +1,9 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import { Container, Button, Header } from './styled-components'
 
-function UserSignup() {
+function UserSignup(props) {
 
-    const [user setUser] = useState({
+    const [user, setUser] = useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -13,16 +14,35 @@ function UserSignup() {
         password: ""
 
 
-    })
+    });
+
+    const [nextStepLink, setNextStepLink] = useState('');
+    const [formTitle, setFormTitle] = useState('');
+
+    useEffect(() => {
+        if (props.userType === 'mother') {
+            setNextStepLink('/signup/mother');
+            setFormTitle('Mother Signup');
+        } else {
+            setNextStepLink('/signup/driver');
+            setFormTitle('Driver Signup');
+        }
+    }, [])
 
     const handleChange = (e) => {
-        setMother({...mother, [e.target.name]: e.target.value})
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.handleUserFormSubmit(user);
+        props.history.push(nextStepLink);
     }
 
     return (
-        <div>
-
-            <form>
+        <Container>
+            <Header>{formTitle}</Header>
+            <form onSubmit={handleSubmit}>
                 <input 
                     type="text" 
                     id="firstName" 
@@ -86,8 +106,10 @@ function UserSignup() {
                     onChange={handleChange} 
                 /><br />
                 <label htmlFor="password">Password</label><br /><br />
+
+                <Button type="submit">Next</Button>
             </form>
-        </div>
+        </Container>
     )
 }
 

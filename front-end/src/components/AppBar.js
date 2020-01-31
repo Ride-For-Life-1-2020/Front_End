@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../style';
 
 const Wrapper = styled.div`
-    position: fixed;
     width: 100%;
     background: ${theme.color.white};
     z-index: 1000;
@@ -101,7 +100,7 @@ const AppBar = ({isLogged}) => {
                         </MenuItemIcon> 
                         <MenuItemIcon>
                             <MenuText>
-                                <NavLink className="sign-up" to="/sign-up/who-ami">
+                                <NavLink className="sign-up" to="/signup/whoami">
                                     Sign up
                                 </NavLink>
                             </MenuText>

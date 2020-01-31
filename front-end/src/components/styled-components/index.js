@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {theme} from '../../style';
 
 export const Container = styled.div`
     display: flex;
@@ -72,3 +73,26 @@ export const TextFieldWrapper = styled.div`
         : null
     )}
 `;
+
+// Buttons
+export const Button = styled.button`
+    padding: 15px 25px;
+    width: 100%;
+    background-color: ${theme.color.lightGreen};
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    transition: ease-in .2s;
+    color: white;
+
+    :hover {
+        background-color: #388e3c;
+    }
+
+`
+
+// Header
+export const Header = styled.h1`
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+`
