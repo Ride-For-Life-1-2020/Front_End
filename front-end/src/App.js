@@ -1,5 +1,5 @@
 import React from 'react';
-import MotherSignup from './MotherSignup'
+import MotherSignup from './components/MotherSignup'
 
 function App() {
   return (
