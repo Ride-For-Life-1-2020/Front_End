@@ -1,4 +1,6 @@
-
+PVD
+___________________
+https://docs.google.com/document/d/1-PKqSaBhlZjVlKvtGwjtclaYex2PwfN3v_ktRlXBbZI/edit#
 1.1. Contribution Instructions
 ------------------------------
 Follow the instructions bellow to setup your work env and work process:
@@ -20,3 +22,10 @@ To avoid overwrite each others, please submit all merge requests to PM.
 - yup 0.28.1
 - axios 0.19.2
 - styled-components 5.0.0
+- React-redux 7.1.3
+
+1.3. Links
+----------
+
+- [Project Vision Document - PVD](https://docs.google.com/document/d/1-PKqSaBhlZjVlKvtGwjtclaYex2PwfN3v_ktRlXBbZI/edit#)
+- [Project wireframe](https://wireframe.cc/pro/pp/917516613308996)
