@@ -1,4 +1,6 @@
 import React from 'react';
+import LoginForm from './components/Form';
+import {BrowserRouter as Route, Route, Switch} from 'react-router-dom';
 
 function App() {
   return (
