@@ -41,12 +41,16 @@ export const FormWrapper = styled.form`
         width: 46%;
         margin: 0 auto;
     }
+    -webkit-box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px -1px 8px 0px rgba(0,0,0,0.5);
+    padding: 25px 25px;
+    border-radius: 7px;
 `
 
 // Inputs
 export const TextField = styled.input`
     width: 100%;
-    left: 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
@@ -57,15 +61,16 @@ export const TextField = styled.input`
 
 export const Label = styled.label`
     display: block;
-    padding: 15px 0px 1px 5px;
+    padding: 0px 0px 3px 5px;
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
 
 `;
 
 export const TextFieldWrapper = styled.div`
     position: relative;
     margin-bottom: 15px;
+    width: 95%;
     ${props => (props.width ?
         `
         width: ${props.width};
@@ -88,6 +93,10 @@ export const Button = styled.button`
         background-color: #388e3c;
     }
 
+    @media (min-width: 600px) {
+        width: 150px;
+    }
+
 `
 
 // Header
@@ -96,3 +105,14 @@ export const Header = styled.h1`
     font-weight: bold;
     margin-bottom: 25px;
 `
+
+// Helpers
+export const ClearFix = styled.div`
+    
+    ${props => (props.px ?
+        `
+        padding: ${props.px}
+        `
+        : `padding: 5px 0;`
+    )}
+`;
