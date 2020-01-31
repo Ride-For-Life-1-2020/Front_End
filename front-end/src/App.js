@@ -10,7 +10,7 @@ function App() {
       <AppBar />
       <h1>Front end</h1>
       <h2>Yup</h2>
-      <MotherSignup />
+
       <Footer />
     </div>
   );
