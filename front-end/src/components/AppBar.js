@@ -1,8 +1,10 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import { Container, Logo } from './styled-components';
 import { NavLink } from 'react-router-dom';
 import { theme } from '../style';
+import {withRouter} from 'react-router-dom';
 
 const Wrapper = styled.div`
     position: fixed;
@@ -10,7 +12,7 @@ const Wrapper = styled.div`
     background: ${theme.color.white};
     z-index: 1000;
     box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5)
-`
+`;
 
 const MenuItemIcon = styled.div`
     display: flex;
@@ -18,7 +20,7 @@ const MenuItemIcon = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-`
+`;
 
 const MenuText = styled.div`
     font-size: 0.7rem;
@@ -40,12 +42,12 @@ const MenuText = styled.div`
             text-decoration: underline;
         }
     }
-`
+`;
 
 const RightMenuItems = styled.div`
     display: flex;
     flex-direction: row;
-`
+`;
 
 const styles = {
     container: {
@@ -73,8 +75,18 @@ const styles = {
     }
 }
 
-const AppBar = ({isLogged}) => {
+const AppBar = ({history,match,location, isLogged}) => {
+    console.log(history);
     const classes = styles;
+    // Grab dispatch function
+    const dispatch = useDispatch();
+    // Handle Log user out.
+    const handleLogOut = (event) => {
+        event.preventDefault();
+        localStorage.removeItem('auth-token');
+        dispatch({type: 'SET_LOGGEDIN', payload: false});
+        window.location.href = "/sign-in";
+    }
     return(
         <Wrapper>
             <Container style={classes.container}>
@@ -84,7 +96,7 @@ const AppBar = ({isLogged}) => {
                 {isLogged &&  
                     <MenuItemIcon>
                     <MenuText>
-                        <NavLink exact to="/logout">
+                        <NavLink exact to="/logout" onClick={handleLogOut}>
                             Logout
                         </NavLink>
                     </MenuText>
@@ -113,4 +125,4 @@ const AppBar = ({isLogged}) => {
     )
 }
 
-export default AppBar;
+export default withRouter(AppBar);
