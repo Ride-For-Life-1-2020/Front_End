@@ -7,6 +7,8 @@ import { Switch, Route } from 'react-router-dom';
 import WhoAmI from './components/WhoAmI';
 import UserSignup from './components/UserSignup';
 import HomePage from './components/HomePage';
+import DriverInfoForm from './components/DriverForms/DriverInfoForm';
+import VehicleInfo from './components/DriverForms/VehicleInfo';
 
 function App() {
   const [isMother, setIsMother] = useState(false);
@@ -35,6 +37,8 @@ function App() {
         <Route exact path="/signup" component={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
         <Route path="/signup/whoami" component={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
         <Route path="/signup/mother" component={props => <MotherSignup handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route exact path="/signup/driver/step/1" component={props => <DriverInfoForm history={props.history} handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route path="/signup/driver/step/2" component={props => <VehicleInfo handleUserFormSubmit={handleUserFormSubmit} />} />
        </Switch>
       <Footer />
     </div>

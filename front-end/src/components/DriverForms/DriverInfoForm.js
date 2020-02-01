@@ -7,7 +7,7 @@ import {
     TextFieldWrapper,
     TextField, 
     Label,
-    ClearFix } from './styled-components'
+    ClearFix } from './../styled-components'
 
 function DriverInfo(props) {
 
@@ -16,17 +16,22 @@ function DriverInfo(props) {
         licenseNumber: "",
         insuranceCompany: "",
         policyNumber: ""
-
-
     })
 
     const handleChange = (e) => {
         setDriver({...driver, [e.target.name]: e.target.value})
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.handleUserFormSubmit(driver);
+        props.history.push('/signup/driver/step/2');
+    }
+
     return (
         <Container>
-            <FormWrapper>
+            <ClearFix px="15px" />
+            <FormWrapper onSubmit={handleSubmit}>
                 <Header>Driver Information (cont.)</Header>
                 <TextFieldWrapper>
                     <Label htmlFor="dob">Date of Birth</Label>
