@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, Logo } from './styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { theme } from '../style';
 
 const Wrapper = styled.div`
-    position: fixed;
     width: 100%;
     background: ${theme.color.white};
     z-index: 1000;
-    box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5)
+    box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.2);
 `
 
 const MenuItemIcon = styled.div`
@@ -37,7 +36,8 @@ const MenuText = styled.div`
         }
 
         :hover {
-            text-decoration: underline;
+            background-color: ${theme.color.darkerGreen};
+            color: ${theme.color.white};
         }
     }
 `
@@ -61,6 +61,7 @@ const styles = {
         padding: "10px 0"
     },
     logo: {
+        textDecoration: 'none',
         color: theme.color.lightGreen,
     },
 
@@ -78,8 +79,10 @@ const AppBar = ({isLogged}) => {
     return(
         <Wrapper>
             <Container style={classes.container}>
-                <Logo style={classes.logo}>
-                    ride<span style={classes.logoSpan}>4</span>Life
+                <Logo >
+                    <Link style={classes.logo} to="/">
+                        ride<span style={classes.logoSpan}>4</span>Life
+                    </Link>
                 </Logo>
                 {isLogged &&  
                     <MenuItemIcon>
@@ -101,7 +104,7 @@ const AppBar = ({isLogged}) => {
                         </MenuItemIcon> 
                         <MenuItemIcon>
                             <MenuText>
-                                <NavLink className="sign-up" to="/sign-up">
+                                <NavLink className="sign-up" to="/signup/whoami">
                                     Sign up
                                 </NavLink>
                             </MenuText>

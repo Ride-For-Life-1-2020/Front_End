@@ -1,16 +1,45 @@
-import React from 'react';
-import LoginForm from './components/Form';
+import React, {useState} from 'react';
+//import LoginForm from './components/Form';
 import MotherSignup from './components/MotherSignup'
 import AppBar from './components/AppBar';
 import Footer from './components/Footer';
+import { Switch, Route } from 'react-router-dom';
+import WhoAmI from './components/WhoAmI';
+import UserSignup from './components/UserSignup';
+import HomePage from './components/HomePage';
+import DriverInfoForm from './components/DriverForms/DriverInfoForm';
+import VehicleInfo from './components/DriverForms/VehicleInfo';
 
 function App() {
+  const [isMother, setIsMother] = useState(false);
+
+  const onUserType = event => {
+    if (event.target.textContent === 'Mother') {
+      setIsMother(true)
+    } else {
+      setIsMother(false)
+    }
+  }
+
+  const getUserType = () => {
+   return isMother ? 'mother' : 'driver';
+  }
+
+  const handleUserFormSubmit = data => {
+    // Handle submit User form data
+  }
+
   return (
     <div className="App">
       <AppBar />
-      <h1>Front end</h1>
-      <h2>Yup</h2>
-      <MotherSignup />
+      <Switch>
+        <Route exact path="/" component={props => <HomePage history={props.history} />} />
+        <Route exact path="/signup" component={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
+        <Route path="/signup/whoami" component={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
+        <Route path="/signup/mother" component={props => <MotherSignup handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route exact path="/signup/driver/step/1" component={props => <DriverInfoForm history={props.history} handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route path="/signup/driver/step/2" component={props => <VehicleInfo handleUserFormSubmit={handleUserFormSubmit} />} />
+       </Switch>
       <Footer />
     </div>
   );
