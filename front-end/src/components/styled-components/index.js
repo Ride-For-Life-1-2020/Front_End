@@ -100,12 +100,24 @@ export const Button = styled.button`
 
 `
 
-// Header
+// Heading
 export const Header = styled.h1`
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 25px;
 `
+
+export const H1 = styled.h1`
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 30px 0;
+`;
+
+export const H2 = styled.h2`
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 25px 0;
+`;
 
 // Helpers
 export const ClearFix = styled.div`
@@ -116,4 +128,19 @@ export const ClearFix = styled.div`
         `
         : `padding: 5px 0;`
     )}
+`;
+
+// Illustration container 
+export const IllustrationContainer = styled.div`
+    display: block;
+    width: 100%;
+    height: 250px;
+    ${props =>  `background-image: url(${props.backgroundURL});`}
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    @media (min-width: 1024px) {
+        width: 40%;
+    }
 `;

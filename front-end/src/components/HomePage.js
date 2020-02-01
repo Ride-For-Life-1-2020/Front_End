@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Button } from './styled-components';
+import { Container, Button, IllustrationContainer } from './styled-components';
 
 const illustrationURL = `${process.env.PUBLIC_URL}'/assets/undraw_order_a_car_3tww.svg'`;
 
@@ -27,19 +27,6 @@ const HomeGrid = styled.div`
             position: relative;
             bottom: -10px;
         }
-    }
-`;
-const IllustrationSection = styled.div`
-    display: block;
-    width: 100%;
-    height: 250px;
-    background-image: url(${illustrationURL});
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
-    @media (min-width: 1024px) {
-        width: 40%;
     }
 `;
 
@@ -80,7 +67,7 @@ const HomePage = ({history}) => {
                         Get Started
                     </Button>
                 </AboutSection>
-                <IllustrationSection></IllustrationSection>
+                <IllustrationContainer backgroundURL={illustrationURL} />
             </HomeGrid>
         </Container>
     )
