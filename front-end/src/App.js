@@ -34,7 +34,8 @@ function App() {
         <Route exact path="/" component={props => <HomePage history={props.history} />} />
         <Route exact path="/signup" component={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
         <Route path="/signup/whoami" component={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
-      </Switch>
+        <Route path="/signup/mother" component={props => <MotherSignup handleUserFormSubmit={handleUserFormSubmit} />} />
+       </Switch>
       <Footer />
     </div>
   );

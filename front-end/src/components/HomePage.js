@@ -9,6 +9,7 @@ const HomeGrid = styled.div`
     flex-direction: column;
     position: relative;
     padding-bottom: 20px;
+    margin-bottom: 50px;
 
     @media (min-width: 1024px) {
         flex-direction: row-reverse;
@@ -32,7 +33,7 @@ const HomeGrid = styled.div`
 
 const AboutSection = styled.div`
     p {
-        margin-bottom: 15px;
+      margin-bottom: 25px;
     }
 
     @media (min-width: 1024px) {
@@ -67,7 +68,7 @@ const HomePage = ({history}) => {
                         Get Started
                     </Button>
                 </AboutSection>
-                <IllustrationContainer backgroundURL={illustrationURL} />
+                <IllustrationContainer style={{marginBottom: '25px'}} backgroundURL={illustrationURL} />
             </HomeGrid>
         </Container>
     )

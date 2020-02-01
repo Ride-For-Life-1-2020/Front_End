@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {theme} from '../../style';
 
@@ -79,6 +80,86 @@ export const TextFieldWrapper = styled.div`
         : null
     )}
 `;
+
+/** checkbox */
+
+const CheckboxContainer = styled.label`
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all .3s;
+
+    a {
+        text-decoration: none;
+        color: #2196F3;
+        transition: all .3s;
+        :hover {
+            text-decoration: underline;
+        }
+    }
+
+    :hover input ~ span {
+        background-color: #eeeeee;
+    }
+
+    input:checked ~ span {
+        background-color: ${theme.color.lightGreen};
+    }
+
+    input:checked ~ span:after {
+        display: block;
+    }
+`;
+
+const CheckboxInput = styled.input`
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+`;
+
+const Checkmark = styled.span`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    :after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 7px;
+        top: 4px;
+        width: 4px;
+        height: 9px;
+        border: solid #ffffff;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+`;
+
+export const Checkbox = (props => (
+    <CheckboxContainer>{props.children}
+        <CheckboxInput
+            onChange={props.handleChange} 
+            value={props.value} 
+            type="checkbox" />
+        <Checkmark></Checkmark>
+    </CheckboxContainer>
+));
 
 // Buttons
 export const Button = styled.button`
