@@ -7,7 +7,7 @@ import {
     TextFieldWrapper,
     TextField, 
     Label,
-    ClearFix } from './styled-components'
+    ClearFix } from '../styled-components'
 
 function DriverInfo(props) {
 
