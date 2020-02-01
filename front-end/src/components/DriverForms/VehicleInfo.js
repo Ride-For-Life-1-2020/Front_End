@@ -7,7 +7,9 @@ import {
     TextFieldWrapper,
     TextField, 
     Label,
-    ClearFix } from './../styled-components'
+    ClearFix,
+    Checkbox
+ } from './../styled-components'
 
 function VehicleInfo(props) {
 
@@ -106,6 +108,12 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                <ClearFix px="10px" />
+                <Checkbox handleChange={handleChange} value={false}>
+                    <a href="#">
+                        Terms and Conditions
+                    </a>
+                </Checkbox>
                 <ClearFix px="15px" />
                 <Button type="submit">Complete</Button>
             </FormWrapper>

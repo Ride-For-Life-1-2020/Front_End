@@ -59,7 +59,9 @@ const MotherSignup = props => {
                 </TextFieldWrapper>
                 <ClearFix px="10px" />
                 <Checkbox handleChange={handleChange} value={deliveryInfo.termsAndConditions}>
-                    Terms and Conditions
+                    <a href="#">
+                        Terms and Conditions
+                    </a>
                 </Checkbox>
                 <ClearFix px="15px" />
                 <Button type="submit">Submit</Button>
