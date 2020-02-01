@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import { Switch, Route } from 'react-router-dom';
 import WhoAmI from './components/WhoAmI';
 import UserSignup from './components/UserSignup';
+import HomePage from './components/HomePage';
 
 function App() {
   const [isMother, setIsMother] = useState(false);
@@ -30,6 +31,7 @@ function App() {
     <div className="App">
       <AppBar />
       <Switch>
+        <Route exact path="/" component={props => <HomePage history={props.history} />} />
         <Route exact path="/signup" component={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
         <Route path="/signup/whoami" component={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
       </Switch>

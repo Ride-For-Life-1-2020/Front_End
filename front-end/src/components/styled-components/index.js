@@ -33,6 +33,7 @@ export const Logo  = styled.h1`
     margin: 0;
     font-size: 1.8rem;
     letter-spacing: -2px;
+    font-weight:  bold;
     color: #000;
 `;
 

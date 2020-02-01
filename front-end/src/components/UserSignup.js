@@ -21,6 +21,7 @@ function UserSignup(props) {
         userName: "",
         password: "",
         confirmPassword: "",
+        termsAndConditions: false
 
     });
 
@@ -51,7 +52,7 @@ function UserSignup(props) {
         <Container>
             <ClearFix px="15px" />
             <FormWrapper onSubmit={handleSubmit}>
-            <Header>{formTitle}</Header>
+                <Header>{formTitle}</Header>
                 <TextFieldWrapper>
                     
                     <Label htmlFor="firstName">First Name</Label>
