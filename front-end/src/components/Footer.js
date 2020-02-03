@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     background: #1d1e1e;
     text-align: center;
     padding: 50px 0;
-    margin-top: 100px;
+    margin-top: 50px;
     width: 100%;
 `
 
