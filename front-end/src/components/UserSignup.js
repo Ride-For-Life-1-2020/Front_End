@@ -21,6 +21,7 @@ function UserSignup(props) {
         userName: "",
         password: "",
         confirmPassword: "",
+        termsAndConditions: false
 
     });
 
@@ -32,7 +33,7 @@ function UserSignup(props) {
             setNextStepLink('/signup/mother');
             setFormTitle('Mother Signup');
         } else {
-            setNextStepLink('/signup/driver');
+            setNextStepLink('/signup/driver/step/1');
             setFormTitle('Driver Signup');
         }
     }, [])

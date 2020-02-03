@@ -7,7 +7,9 @@ import {
     TextFieldWrapper,
     TextField, 
     Label,
-    ClearFix } from '../styled-components'
+    ClearFix,
+    Checkbox
+ } from './../styled-components'
 
 function VehicleInfo(props) {
 
@@ -24,9 +26,15 @@ function VehicleInfo(props) {
         setVehicle({...vehicle, [e.target.name]: e.target.value})
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.handleUserFormSubmit(vehicle);
+    }
+
     return (
         <Container>
-            <FormWrapper>
+            <ClearFix px="15px" />
+            <FormWrapper onSubmit={handleSubmit}>
                 <Header>Vehicle Information</Header>
                 <TextFieldWrapper>
                     <Label htmlFor="vehicleMake">Vehicle Make</Label>
@@ -100,8 +108,14 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                <ClearFix px="10px" />
+                <Checkbox handleChange={handleChange} value={false}>
+                    <a href="#">
+                        Terms and Conditions
+                    </a>
+                </Checkbox>
                 <ClearFix px="15px" />
-                <Button type="submit">Complete Signup</Button>
+                <Button type="submit">Complete</Button>
             </FormWrapper>
             
         </Container>
