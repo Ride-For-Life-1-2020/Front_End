@@ -77,7 +77,7 @@ const styles = {
 }
 
 const AppBar = ({history,match,location, isLogged}) => {
-    console.log(history);
+    //console.log(history);
     const classes = styles;
     // Grab dispatch function
     const dispatch = useDispatch();
