@@ -15,7 +15,6 @@ const HomeGrid = styled.div`
         flex-direction: row-reverse;
         align-content: center;
         justify-content: center;
-        height: 39vh;
         padding-top: 100px;
     }
 
@@ -62,7 +61,7 @@ const HomePage = ({history}) => {
         <Container>
             <HomeGrid>
                 <AboutSection>
-                    <H1>Go to deliver safely</H1>
+                    <H1>Go to delivery safely</H1>
                     <p>{about}</p>
                     <Button onClick={handleClick} className="btn-get-started">
                         Get Started
