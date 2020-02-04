@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import LoginForm from './components/Form';
+import LoginForm from './components/LoginForm';
 import {useDispatch, useSelector} from 'react-redux';
 import MotherSignup from './components/MotherSignup'
 import AppBar from './components/AppBar';
@@ -10,6 +10,7 @@ import UserSignup from './components/UserSignup';
 import HomePage from './components/HomePage';
 import DriverInfoForm from './components/DriverForms/DriverInfoForm';
 import VehicleInfo from './components/DriverForms/VehicleInfo';
+import ProtectedRoute from './ProtectedRoute';
 import axios from 'axios';
 
 function App() {
@@ -20,17 +21,18 @@ function App() {
   const isLogged = useSelector(state => state.root.isLoggedIn);
 
   // useEffect( () => {
-  //   Axios.get('/login')
+  //   axios.get('/login')
   //   .then( response => {
   //     console.log(response);
   //   })
   //   .catch( error => {
   //     console.log(error);
   //   })
-  // }, []); 
+  // }, []);
+
   const [isMother, setIsMother] = useState(false);
 
-  const onUserType = event => event.target.textContent === 'Mother' ? setIsMother(true) : setIsMother(false)
+  const onUserType = event => event.target.textContent === 'Mother' ? setIsMother(true) : setIsMother(false);
 
 
   const getUserType = () => isMother ? 'mother' : 'driver';
@@ -38,13 +40,14 @@ function App() {
   const handleUserFormSubmit = data => {
     // Handle submit User form data
   }
+  console.log(state);
   return (
 
     <div className="App">
       <AppBar isLogged={isLogged} />
       <Switch>
         <Route exact path="/" render={props => <HomePage history={props.history} />} />
-        <Route exact path="/sign-in" render={LoginForm} />
+        <Route exact path="/sign-in" component={LoginForm} />
         <Route exact path="/signup" render={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
         <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
         <Route path="/signup/mother" render={props => <MotherSignup handleUserFormSubmit={handleUserFormSubmit} />} />
