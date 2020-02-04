@@ -29,6 +29,10 @@ const HomeGrid = styled.div`
             bottom: -10px;
         }
     }
+
+    @media (min-width 1250px)  {
+        padding: 100px 0
+    }
 `;
 
 const AboutSection = styled.div`
