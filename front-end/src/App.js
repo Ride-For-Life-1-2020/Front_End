@@ -38,14 +38,15 @@ function App() {
 
       // Specific information
       // Signup Process (step2. step3)
-      Mother (sptep2)                     "  Driver (step2)           " Driver (step3)
-      =============================================================== ====================
-      dueDate: string (date: mm/dd/yyyy)  " dateOgBirth: string       " vehicleMake: string
-      hospitalName: string                " licenseNumber: string     " vehicleModel: string         
-      hospitalAddress: string             " insuranceCompany: string  " year: string
-      hospitalCity: string                " policyNumber: string      " licensePlate: string
-      hospitalPhone: string               "                           " vin: string
-      =============================================================================
+      ===========================================================================================
+      = Mother (sptep2)                     "  Driver (step2)           " Driver (step3)        =
+      =============================================================== ===========================
+      = dueDate: string (date: mm/dd/yyyy)  " dateOgBirth: string       " vehicleMake: string   =
+      = hospitalName: string                " licenseNumber: string     " vehicleModel: string  =         
+      = hospitalAddress: string             " insuranceCompany: string  " year: string          =
+      = hospitalCity: string                " policyNumber: string      " licensePlate: string  =
+      = hospitalPhone: string               "                           " vin: string           =
+      =========================================================================================
     }
    */ 
    const [newUserInfo, setNewUserInfo] = useState({})
@@ -74,7 +75,8 @@ function App() {
           ...newUserInfo,
           ...formData.data
         });
-        console.log(newUserInfo)
+      // =======  POST FROM HERE  ==================
+
     } else {
       if (formData.step === 1) {
         setNewUserInfo({
