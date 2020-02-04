@@ -83,7 +83,7 @@ function UserSignup(props) {
             errors.emailError = "*Please enter a valid email address"
         }
 
-        if (!user.phone.includes('-') && !user.phone.length < 18) {
+        if (!user.phone.includes('-') && !user.phone.length < 15) {
             isErr = true;
             errors.phoneError = "*Please enter a phone number in this format (+256 772-000-0000)"
             errors.phone = ""
@@ -131,11 +131,10 @@ function UserSignup(props) {
     const handleSubmit = e => {
         e.preventDefault();
         const err = validate();
-        if (!err) {
+        if (!err){
             props.handleUserFormSubmit(user);
             props.history.push(nextStepLink);
-        }
-            
+        }   
     }
 
     return (
