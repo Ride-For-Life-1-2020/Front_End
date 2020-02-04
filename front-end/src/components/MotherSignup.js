@@ -29,7 +29,7 @@ const MotherSignup = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.handleUserFormSubmit(deliveryInfo);
+        props.handleUserFormSubmit({data: deliveryInfo, step: 'complete'});
     }
     
     return (
@@ -64,7 +64,7 @@ const MotherSignup = props => {
                     </a>
                 </Checkbox>
                 <ClearFix px="15px" />
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Complete</Button>
             </FormWrapper>
         </Container>
     )

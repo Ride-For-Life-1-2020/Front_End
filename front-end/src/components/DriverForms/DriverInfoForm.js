@@ -9,6 +9,8 @@ import {
     Label,
     ClearFix } from './../styled-components'
 
+ 
+
 function DriverInfo(props) {
 
     const [driver, setDriver] = useState({
@@ -24,7 +26,7 @@ function DriverInfo(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.handleUserFormSubmit(driver);
+        props.handleUserFormSubmit({data: driver, step: 2});
         props.history.push('/signup/driver/step/2');
     }
 

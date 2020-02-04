@@ -225,3 +225,10 @@ export const IllustrationContainer = styled.div`
         width: 40%;
     }
 `;
+
+export const Error = styled.p`
+    margin-top: -12px;
+    color: red;
+    padding: 0 10px 10px 0px;
+    font-size: .65rem;
+`
