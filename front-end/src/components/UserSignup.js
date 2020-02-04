@@ -131,11 +131,15 @@ function UserSignup(props) {
     const handleSubmit = e => {
         e.preventDefault();
         const err = validate();
+<<<<<<< HEAD
         if (!err) {
             props.handleUserFormSubmit({data: user, step: 1});
+=======
+        if (!err){
+            props.handleUserFormSubmit(user);
+>>>>>>> 7ffdbf4fe170bc30f5b08dcd1b07a51251263cad
             props.history.push(nextStepLink);
-        }
-            
+        }   
     }
 
     return (
