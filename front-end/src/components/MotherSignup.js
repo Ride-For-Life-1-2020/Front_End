@@ -29,7 +29,7 @@ const MotherSignup = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.handleUserFormSubmit(deliveryInfo);
+        props.handleUserFormSubmit({data: deliveryInfo, step: 'complete'});
     }
     
     return (

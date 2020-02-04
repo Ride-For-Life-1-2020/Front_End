@@ -83,7 +83,7 @@ function UserSignup(props) {
             errors.emailError = "*Please enter a valid email address"
         }
 
-        if (!user.phone.includes('-') && !user.phone.length < 18) {
+        if (user.phone.length < 10) {
             isErr = true;
             errors.phoneError = "*Please enter a phone number in this format (+256 772-000-0000)"
             errors.phone = ""
@@ -132,7 +132,7 @@ function UserSignup(props) {
         e.preventDefault();
         const err = validate();
         if (!err) {
-            props.handleUserFormSubmit(user);
+            props.handleUserFormSubmit({data: user, step: 1});
             props.history.push(nextStepLink);
         }
             
@@ -231,24 +231,24 @@ function UserSignup(props) {
                 <TextFieldWrapper>
                     <Label htmlFor="password">Password</Label>
                     <TextField 
-                        type="text" 
+                        type="password" 
                         id="password" 
                         name="password" 
                         value={user.password} 
                         onChange={handleChange}
-                        placeholder="Password" 
+                        placeholder="********" 
                     />
                 </TextFieldWrapper>
                 {errors.passwordError.length > 1 ? <Error>{errors.passwordError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="confirmPassword">Confirm Password</Label>
                     <TextField 
-                        type="text" 
+                        type="password" 
                         id="confirmPassword" 
                         name="confirmPassword" 
                         value={user.confirmPassword} 
                         onChange={handleChange} 
-                        placeholder="Confirm Password"
+                        placeholder="********"
                     />
                 </TextFieldWrapper>
                 {errors.confirmPasswordError.length > 1 ? <Error>{errors.confirmPasswordError}</Error> : null}
