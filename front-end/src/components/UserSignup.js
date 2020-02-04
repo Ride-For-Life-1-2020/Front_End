@@ -14,25 +14,27 @@ function UserSignup(props) {
 
     const [user, setUser] = useState({
         firstName: "",
-        firstNameError: "",
         lastName: "",
-        lastNameError: "",
         email: "",
-        emailError: "",
         phone: "",
-        phoneError: "",
         address: "",
-        addressError: "",
         city: "",
-        cityError: "",
         username: "",
-        usernameError: "",
         password: "",
-        passwordError: "",
-        confirmPassword: "",
-        confirmPasswordError: ""
-
+        confirmPassword: ""
     });
+
+    const [errors, setErrors] = useState({
+        firstNameError: "",
+        lastNameError: "",
+        emailError: "",
+        phoneError: "",
+        addressError: "",
+        cityError: "",
+        usernameError: "",
+        passwordError: "",
+        confirmPasswordError: ""
+    })
 
     const [nextStepLink, setNextStepLink] = useState('');
     const [formTitle, setFormTitle] = useState('');
@@ -120,7 +122,7 @@ function UserSignup(props) {
         }
 
         if (isErr) {
-            setUser({...user, ...errors})
+            setErrors({...errors})
         }
 
         return isErr
@@ -153,7 +155,7 @@ function UserSignup(props) {
                         placeholder="Joe"
                     />
                 </TextFieldWrapper>
-                {user.firstNameError.length > 1 ? <Error>{user.firstNameError}</Error> : null}
+                {errors.firstNameError.length > 1 ? <Error>{errors.firstNameError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="lastName">Last Name</Label>
                     <TextField 
@@ -165,7 +167,7 @@ function UserSignup(props) {
                         placeholder="Tom"
                     />
                 </TextFieldWrapper>
-                {user.lastNameError.length > 1 ? <Error>{user.lastNameError}</Error> : null}
+                {errors.lastNameError.length > 1 ? <Error>{errors.lastNameError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="email">Email</Label>
                     <TextField 
@@ -177,7 +179,7 @@ function UserSignup(props) {
                         placeholder="example@fake.com" 
                     />
                 </TextFieldWrapper>
-                {user.emailError.length > 1 ? <Error>{user.emailError}</Error> : null}
+                {errors.emailError.length > 1 ? <Error>{errors.emailError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="phone">Phone (Uganda Only)</Label>
                     <TextField
@@ -189,7 +191,7 @@ function UserSignup(props) {
                         placeholder="+256 772-000-000"
                     />
                 </TextFieldWrapper>
-                {user.phoneError.length > 1 ? <Error>{user.phoneError}</Error> : null}
+                {errors.phoneError.length > 1 ? <Error>{errors.phoneError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="address">Address</Label>
                     <TextField
@@ -201,7 +203,7 @@ function UserSignup(props) {
                         placeholder="address" 
                     />
                 </TextFieldWrapper>
-                {user.addressError.length > 1 ? <Error>{user.addressError}</Error> : null}
+                {errors.addressError.length > 1 ? <Error>{errors.addressError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="city">City</Label>
                     <TextField 
@@ -213,7 +215,7 @@ function UserSignup(props) {
                         placeholder="City"
                     />
                 </TextFieldWrapper>
-                {user.cityError.length > 1 ? <Error>{user.cityError}</Error> : null}
+                {errors.cityError.length > 1 ? <Error>{errors.cityError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="username">User Name</Label>
                     <TextField 
@@ -225,7 +227,7 @@ function UserSignup(props) {
                         placeholder="Must contain at least 8 characters" 
                     />
                 </TextFieldWrapper>
-                {user.usernameError.length > 1 ? <Error>{user.usernameError}</Error> : null}
+                {errors.usernameError.length > 1 ? <Error>{errors.usernameError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="password">Password</Label>
                     <TextField 
@@ -237,7 +239,7 @@ function UserSignup(props) {
                         placeholder="Password" 
                     />
                 </TextFieldWrapper>
-                {user.passwordError.length > 1 ? <Error>{user.passwordError}</Error> : null}
+                {errors.passwordError.length > 1 ? <Error>{errors.passwordError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="confirmPassword">Confirm Password</Label>
                     <TextField 
@@ -249,7 +251,7 @@ function UserSignup(props) {
                         placeholder="Confirm Password"
                     />
                 </TextFieldWrapper>
-                {user.confirmPasswordError.length > 1 ? <Error>{user.confirmPasswordError}</Error> : null}
+                {errors.confirmPasswordError.length > 1 ? <Error>{errors.confirmPasswordError}</Error> : null}
                 <ClearFix px="15px" />
                 <Button type="submit">Next</Button>
             </FormWrapper>
