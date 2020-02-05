@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { 
     Container, 
-    Button, 
+    StyledLink, 
     Header,
     FormWrapper,
     TextFieldWrapper,
@@ -9,6 +9,7 @@ import {
     Label,
     ClearFix, 
     Error } from './styled-components'
+import { Link } from "react-router-dom"
 
 function UserSignup(props) {
 
@@ -128,19 +129,19 @@ function UserSignup(props) {
         return isErr
     }
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    const handleClick = e => {
+        
         const err = validate();
-        if (!err) {
-            props.handleUserFormSubmit({data: user, step: 1});
-            props.history.push(nextStepLink);
-        }   
+        if (err){
+            e.preventDefault();
+        }
     }
+
 
     return (
         <Container>
             <ClearFix px="15px" />
-            <FormWrapper onSubmit={handleSubmit}>
+            <FormWrapper>
                 <Header>{formTitle}</Header>
                 <TextFieldWrapper>
                     
@@ -252,7 +253,7 @@ function UserSignup(props) {
                 </TextFieldWrapper>
                 {errors.confirmPasswordError.length > 1 ? <Error>{errors.confirmPasswordError}</Error> : null}
                 <ClearFix px="15px" />
-                <Button type="submit">Next</Button>
+                <StyledLink onClick={handleClick} to={{ pathname: `${nextStepLink}`, state: { user }}}>Next</StyledLink>
             </FormWrapper>
         </Container>
     )

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {theme} from '../../style';
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
     display: flex;
@@ -231,4 +232,24 @@ export const Error = styled.p`
     color: red;
     padding: 0 10px 10px 0px;
     font-size: .65rem;
+`
+
+export const StyledLink = styled(Link)`
+    padding: 15px 25px;
+    width: 100%;
+    background-color: ${theme.color.lightGreen};
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    transition: ease-in .2s;
+    color: white;
+    text-decoration: none;
+    font-size: 0.65rem;
+
+    :hover {
+        background-color: ${theme.color.darkerGreen};
+    }
+
+    @media (min-width: 600px) {
+        width: 150px;
+    }
 `
