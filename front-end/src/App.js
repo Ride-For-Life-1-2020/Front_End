@@ -101,6 +101,10 @@ function App() {
       <AppBar isLogged={isLogged} />
       <Switch>
         <Route exact path="/" render={props => <HomePage history={props.history} />} />
+         tom-lewandowski
+        <Route exact path="/signup" render={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
+        <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
+        <Route path="/signup/mother" render={props => <MotherSignup {...props} handleUserFormSubmit={handleUserFormSubmit} />} />
         <Route exact path="/sign-in" component={LoginForm} />
         <Route exact path="/signup" render={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
         <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
