@@ -28,7 +28,7 @@ function VehicleInfo(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.handleUserFormSubmit(vehicle);
+        props.handleUserFormSubmit({data: vehicle, step: 'complete'});
     }
 
     return (

@@ -84,7 +84,7 @@ function UserSignup(props) {
             errors.emailError = "*Please enter a valid email address"
         }
 
-        if (!user.phone.includes('-') && !user.phone.length < 15) {
+        if (user.phone.length < 10) {
             isErr = true;
             errors.phoneError = "*Please enter a phone number in this format (+256 772-000-0000)"
             errors.phone = ""
@@ -236,7 +236,7 @@ function UserSignup(props) {
                         name="password" 
                         value={user.password} 
                         onChange={handleChange}
-                        placeholder="Password" 
+                        placeholder="********" 
                     />
                 </TextFieldWrapper>
                 {errors.passwordError.length > 1 ? <Error>{errors.passwordError}</Error> : null}
@@ -248,7 +248,7 @@ function UserSignup(props) {
                         name="confirmPassword" 
                         value={user.confirmPassword} 
                         onChange={handleChange} 
-                        placeholder="Confirm Password"
+                        placeholder="********"
                     />
                 </TextFieldWrapper>
                 {errors.confirmPasswordError.length > 1 ? <Error>{errors.confirmPasswordError}</Error> : null}
