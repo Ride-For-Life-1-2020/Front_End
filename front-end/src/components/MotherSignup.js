@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import * as yup from 'yup'
 
 import { 
     Container, 
@@ -10,11 +11,13 @@ import {
     ClearFix,
     H2,
     Checkbox,
+    Error
 } from './styled-components'
 
 const MotherSignup = props => {
-
-    const [deliveryInfo, setDeliveryInfo] = useState({
+    console.log(props);
+    const data = props.location.state.user
+    const [deliveryInfo, setDeliveryInfo] = useState({...data,
         dueDate: '',
         hospitalName: '',
         hospitalAddress: '',
@@ -23,19 +26,45 @@ const MotherSignup = props => {
         termsAndConditions: false 
     })
 
+    const [deliveryInfoErrors, setDeliveryInfoErrors] = useState({
+        dueDateError: '',
+        hospitalNameError: '',
+        hospitalAddressError: '',
+        hospitalCityError: '',
+        hospitalPhoneError: '',
+        termsAndConditionsError: false 
+    })
+    
+    
+
     const handleChange = e => {
         setDeliveryInfo({...deliveryInfo, [e.target.name]: e.target.value})
     }
 
     const handleSubmit = e => {
-        e.preventDefault();
-        props.handleUserFormSubmit(deliveryInfo);
+        const err = validate();
+        if (err) {
+            e.preventDefault()
+        }
     }
+
+    const validate = () => {
+        
+        let isErr = false
+
+        if (deliveryInfo.dueDate.length < 1) {
+            setDeliveryInfoErrors.dueDateError("Due Date is a required filed")
+            isErr = true
+        }
+    }
+
+    console.log(deliveryInfo)
+
     
     return (
         <Container>
             <ClearFix px="15px" />
-            <FormWrapper onSubmit={handleSubmit}>
+            <FormWrapper>
                 <H2>Tell us about your delivery</H2>
                 <TextFieldWrapper>
                     <Label htmlFor="dueDate">Due date</Label>
@@ -71,5 +100,6 @@ const MotherSignup = props => {
 
    
 }
+
 
 export default MotherSignup
