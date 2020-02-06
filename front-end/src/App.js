@@ -10,7 +10,9 @@ import UserSignup from './components/UserSignup';
 import HomePage from './components/HomePage';
 import DriverInfoForm from './components/DriverForms/DriverInfoForm';
 import VehicleInfo from './components/DriverForms/VehicleInfo';
-import ProtectedRoute from './ProtectedRoute';
+import RiderDashboardPage from './components/profile_page/rider_page_components/RiderDashboardPage';
+import {ProtectedRoute} from './ProtectedRoute';
+import SearchPage from './components/SearchPage';
 import axios from 'axios';
 
 function App() {
@@ -19,37 +21,6 @@ function App() {
 
   const state = useSelector(state => state);
   const isLogged = useSelector(state => state.root.isLoggedIn);
-
-  // This state can contain the mother's or dirver's signup information. 
-  // The data come from signup forms and can be present like this
-  /**
-    object {
-      userType: string 'mother' || 'driver'
-
-      // General information (same for the mother and driver)
-      // Signup Process (step1)
-      firstName: string
-      lastName: stirng
-      eamil: string
-      phone: string
-      address: string
-      city: string
-      userName: string
-      password:  string
-
-      // Specific information
-      // Signup Process (step2. step3)
-      ===========================================================================================
-      = Mother (sptep2)                     "  Driver (step2)           " Driver (step3)        =
-      =============================================================== ===========================
-      = dueDate: string (date: mm/dd/yyyy)  " dateOgBirth: string       " vehicleMake: string   =
-      = hospitalName: string                " licenseNumber: string     " vehicleModel: string  =         
-      = hospitalAddress: string             " insuranceCompany: string  " year: string          =
-      = hospitalCity: string                " policyNumber: string      " licensePlate: string  =
-      = hospitalPhone: string               "                           " vin: string           =
-      =========================================================================================
-    }
-   */ 
    const [newUserInfo, setNewUserInfo] = useState({})
 
   // useEffect( () => {
@@ -77,7 +48,6 @@ function App() {
           ...newUserInfo,
           ...formData.data
         });
-      // =======  POST FROM HERE  ==================
 
     } else {
       if (formData.step === 1) {
@@ -100,6 +70,8 @@ function App() {
     <div className="App">
       <AppBar isLogged={isLogged} />
       <Switch>
+        <ProtectedRoute exact path="/profile" component={RiderDashboardPage} />
+        <ProtectedRoute exact path="/search" component={SearchPage} />
         <Route exact path="/" render={props => <HomePage history={props.history} />} />
         <Route exact path="/sign-in" component={LoginForm} />
         <Route exact path="/signup" render={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
