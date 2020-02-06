@@ -9,12 +9,16 @@ import {
     Label,
     ClearFix,
     Checkbox,
-    Error
+    Error,
+    StyledLink
  } from './../styled-components'
 
 function VehicleInfo(props) {
 
+    const data = props.location.state.driver
+
     const [vehicle, setVehicle] = useState({
+        ...data,
         vehicleMake: "",
         vehicleModel: "",
         year: "",
@@ -87,8 +91,13 @@ function VehicleInfo(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.handleUserFormSubmit({data: vehicle, step: 'complete'});
+        const err = validate()
+        if (!err) {
+            props.handleUserFormSubmit({data: vehicle});
+        }
     }
+
+    console.log(vehicle)
 
     return (
         <Container>

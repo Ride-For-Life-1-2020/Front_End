@@ -235,15 +235,16 @@ export const Error = styled.p`
 `
 
 export const StyledLink = styled(Link)`
+    display: block;
     padding: 15px 25px;
-    width: 100%;
+    width: 89%;
     background-color: ${theme.color.lightGreen};
     margin-bottom: 15px;
     text-transform: uppercase;
     transition: ease-in .2s;
     color: white;
     text-decoration: none;
-    font-size: 0.65rem;
+    text-align: center;
 
     :hover {
         background-color: ${theme.color.darkerGreen};

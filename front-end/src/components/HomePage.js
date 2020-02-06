@@ -8,14 +8,16 @@ const HomeGrid = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     margin-bottom: 50px;
 
     @media (min-width: 1024px) {
         flex-direction: row-reverse;
-        align-content: center;
         justify-content: center;
-        padding-top: 100px;
+        align-items: center;
+        height: calc(100vh - 235px);
+        margin-bottom: 0;
+        padding: 0;
     }
 
     button.btn-get-started {
