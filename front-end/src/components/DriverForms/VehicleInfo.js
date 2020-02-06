@@ -8,12 +8,16 @@ import {
     TextField, 
     Label,
     ClearFix,
-    Checkbox
+    Checkbox,
+    StyledLink
  } from './../styled-components'
 
 function VehicleInfo(props) {
 
+    const data = props.location.state.user
+
     const [vehicle, setVehicle] = useState({
+        ...data,
         vehicleMake: "",
         vehicleModel: "",
         year: "",
@@ -28,7 +32,7 @@ function VehicleInfo(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.handleUserFormSubmit({data: vehicle, step: 'complete'});
+        props.handleUserFormSubmit({data: vehicle});
     }
 
     return (

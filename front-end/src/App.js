@@ -69,30 +69,10 @@ function App() {
 
   const getUserType = () => isMother ? 'mother' : 'driver';
 
-  const handleUserFormSubmit = formData => {
-    if (formData.step === 'complete') {
-      // Finish to collect signup info. Make Post (create) request here
-      // and redirect the user
-      setNewUserInfo({
-          ...newUserInfo,
-          ...formData.data
-        });
-      // =======  POST FROM HERE  ==================
+  const handleUserFormSubmit = data => {
+    setNewUserInfo(data.data);
 
-    } else {
-      if (formData.step === 1) {
-        setNewUserInfo({
-          ...newUserInfo,
-          userType: getUserType(),
-          ...formData.data
-        });
-      } else {
-        setNewUserInfo({
-          ...newUserInfo,
-          ...formData.data
-        });
-      }
-    }
+    /** ===== POST REQUEST HERE ======= */
   }
   console.log(state);
   return (

@@ -1,19 +1,22 @@
 import React, {useState} from "react"
 import { 
     Container, 
-    Button, 
     Header,
     FormWrapper,
     TextFieldWrapper,
     TextField, 
     Label,
-    ClearFix } from './../styled-components'
+    ClearFix,
+    StyledLink } from './../styled-components'
 
  
 
 function DriverInfo(props) {
 
+    const data = props.location.state.user
+
     const [driver, setDriver] = useState({
+        ...data,
         dob: "",
         licenseNumber: "",
         insuranceCompany: "",
@@ -24,16 +27,22 @@ function DriverInfo(props) {
         setDriver({...driver, [e.target.name]: e.target.value})
     }
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        props.handleUserFormSubmit({data: driver, step: 2});
-        props.history.push('/signup/driver/step/2');
+    const handleClick = e => {
+        
+        const err = validate();
+        if (err){
+            e.preventDefault();
+        }
+    }
+
+    const validate = () => {
+        return true;
     }
 
     return (
         <Container>
             <ClearFix px="15px" />
-            <FormWrapper onSubmit={handleSubmit}>
+            <FormWrapper>
                 <Header>Driver Information (cont.)</Header>
                 <TextFieldWrapper>
                     <Label htmlFor="dob">Date of Birth</Label>
@@ -84,7 +93,7 @@ function DriverInfo(props) {
                 </TextFieldWrapper>
                 
                 <ClearFix px="15px" />
-                <Button type="submit">Next</Button>
+                <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
             </FormWrapper>
             
         </Container>
