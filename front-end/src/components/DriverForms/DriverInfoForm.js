@@ -8,6 +8,7 @@ import {
     Label,
     ClearFix,
     StyledLink } from './../styled-components'
+import ProfilePictureEditor from "./ProfilePictureEditor"
 
  
 
@@ -20,7 +21,8 @@ function DriverInfo(props) {
         dob: "",
         licenseNumber: "",
         insuranceCompany: "",
-        policyNumber: ""
+        policyNumber: "",
+        profilePicture: ""
     })
 
     const handleChange = (e) => {
@@ -37,6 +39,13 @@ function DriverInfo(props) {
 
     const validate = () => {
         return true;
+    }
+
+    const handlePPUpload = data => {
+        setDriver({
+            ...driver,
+            profilePicture: data 
+        })
     }
 
     return (
@@ -91,6 +100,7 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                <ProfilePictureEditor handleUpload={handlePPUpload} />
                 
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
