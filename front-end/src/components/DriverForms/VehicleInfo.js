@@ -30,9 +30,10 @@ function VehicleInfo(props) {
         setVehicle({...vehicle, [e.target.name]: e.target.value})
     }
 
+    /** POST REQUEST */
     const handleSubmit = e => {
         e.preventDefault();
-        props.handleUserFormSubmit({data: vehicle});
+        
     }
 
     return (

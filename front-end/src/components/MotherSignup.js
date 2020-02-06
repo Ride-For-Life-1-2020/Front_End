@@ -85,6 +85,7 @@ const MotherSignup = props => {
         return isErr
     }
 
+    /** POST REQUEST */
     const handleSubmit = (e) => {
         e.preventDefault();
         const err = validate()
