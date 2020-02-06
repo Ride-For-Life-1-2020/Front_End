@@ -25,25 +25,24 @@ const LoginForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (role.driver === true) {
-        axios.post('https://rideforlifebackend.herokuapp.com/api/drivers/login', user,
-        {
-            headers: {
-              "content-type": "application/json" // Tell the server we are sending this over as JSON
-          }
-        })
-        .then( response => {
-            console.log(response);
-            localStorage.setItem('auth-token',  response.data.token);
-            dispatch({type: 'SET_LOGGEDIN_USER', payload:user.UserName});
-            dispatch({type: 'SET_LOGGEDIN', payload: true});
-            props.history.push('/');
-        })
-        .catch( error => {
-            console.log(error);
-        }); 
-        } else {
-            axios.post('https://rideforlifebackend.herokuapp.com/api/patients/login', user,
-            {
+            axios.post('https://rideforlifebackend.herokuapp.com/api/drivers/login', user,{
+                headers: {
+                "content-type": "application/json" // Tell the server we are sending this over as JSON
+            }
+            })
+            .then( response => {
+                console.log(response);
+                localStorage.setItem('auth-token',  response.data.token);
+                dispatch({type: 'SET_LOGGEDIN_USER', payload:user.UserName});
+                dispatch({type: 'SET_LOGGEDIN', payload: true});
+                props.history.push('/');
+            })
+            .catch( error => {
+                console.log(error);
+            }); 
+        } 
+        else {
+            axios.post('https://rideforlifebackend.herokuapp.com/api/patients/login', user,{
                 headers: {
                   "content-type": "application/json" // Tell the server we are sending this over as JSON
               }
@@ -61,15 +60,10 @@ const LoginForm = (props) => {
             }); 
         }
     }
-            // localStorage.setItem('auth-token', 'dsafgsdfgdfgd');
-        // dispatch({type: 'SET_LOGGEDIN', payload: true});
-        // in the .then
-        // SetUser({...user, email: '', password: ''});
-        // props.history.push('/');
     const handleChange = (event) => {
         return SetUser({...user, [event.target.name]: event.target.value});
     }
-    console.log(user);
+
     return(
         <div>
             <StyledForm onSubmit={handleSubmit} >
@@ -81,7 +75,7 @@ const LoginForm = (props) => {
                     <StyledInput type="password" name="Password" value={user.Password} onChange={handleChange}  />
                 </StyledLabel>
                 <StyledLabel> Are you a Driver or a Patient?
-                    <StyledLabel>Patient
+                    <StyledLabel>Mother
                         <StyledCheckbox type="checkbox" name="patient" value="patient" onChange={handleRoleChange} />  
                     </StyledLabel>
                     <StyledLabel>Driver
