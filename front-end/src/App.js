@@ -12,6 +12,7 @@ import DriverInfoForm from './components/DriverForms/DriverInfoForm';
 import VehicleInfo from './components/DriverForms/VehicleInfo';
 import ProtectedRoute from './ProtectedRoute';
 import axios from 'axios';
+import DriverDashboard from './components/DriverDashboard';
 
 function App() {
   // set up a function to grab the user to see if theyre logged in or now.
@@ -53,6 +54,7 @@ function App() {
         <Route path="/signup/mother" render={props => <MotherSignup />} />
         <Route exact path="/signup/driver/step/1" render={props => <DriverInfoForm {...props} />} />
         <Route path="/signup/driver/step/2" render={props => <VehicleInfo />} />
+        <Route  path="/profile/driver" component={DriverDashboard} />
        </Switch>
       <Footer />
     </div>
