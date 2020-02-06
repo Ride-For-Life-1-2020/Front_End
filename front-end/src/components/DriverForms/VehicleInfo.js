@@ -8,7 +8,8 @@ import {
     TextField, 
     Label,
     ClearFix,
-    Checkbox
+    Checkbox,
+    Error
  } from './../styled-components'
 
 function VehicleInfo(props) {
@@ -21,6 +22,64 @@ function VehicleInfo(props) {
         licensePlate: "",
         vin: ""
     })
+
+    const [vehicleErrors, setVehicleErrors] = useState({
+        vehicleMakeError: "",
+        vehicleModelError: "",
+        yearError: "",
+        mileageError: "",
+        licensePlateError: "",
+        vinError: ""
+    })
+
+    const validate = () => {
+        let isErr = false
+
+        const errors = {
+            vehicleMakeError: "",
+            vehicleModelError: "",
+            yearError: "",
+            mileageError: "",
+            licensePlateError: "",
+            vinError: ""
+        }
+
+        if (vehicle.vehicleMake.length < 1) {
+            isErr = true;
+            errors.vehicleMakeError = "Vehicle Make is a required field"
+        }
+
+        if (vehicle.vehicleModel.length < 1) {
+            isErr = true;
+            errors.vehicleModelError = "Vehicle Model is a required field"
+        }
+
+        if (vehicle.year.length < 1) {
+            isErr = true;
+            errors.yearError = "Year is a required field"
+        }
+
+        if (vehicle.mileage.length < 1) {
+            isErr = true;
+            errors.mileageError = "Mileage is a required field"
+        }
+
+        if (vehicle.licensePlate.length < 1) {
+            isErr = true;
+            errors.licensePlateError = "License Plate is a required field"
+        }
+
+        if (vehicle.vin.length < 1) {
+            isErr = true;
+            errors.vinError = "Vehicle Identification Number is a required field"
+        }
+
+        if (isErr) {
+            setVehicleErrors({...vehicleErrors, ...errors})
+        }
+
+        return isErr
+    }
 
     const handleChange = (e) => {
         setVehicle({...vehicle, [e.target.name]: e.target.value})
@@ -48,6 +107,7 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                {vehicleErrors.vehicleMakeError.length > 1 ? <Error>{vehicleErrors.vehicleMakeError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="vehicleModel">Vehicle Model</Label>
                     <TextField 
@@ -60,6 +120,7 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                {vehicleErrors.vehicleModelError.length > 1 ? <Error>{vehicleErrors.vehicleModelError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="year">Year</Label>
                     <TextField 
@@ -72,6 +133,7 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                {vehicleErrors.yearError.length > 1 ? <Error>{vehicleErrors.yearError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="mileage">Mileage</Label>
                     <TextField 
@@ -84,6 +146,7 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                {vehicleErrors.mileageError.length > 1 ? <Error>{vehicleErrors.mileageError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="licensePlate">License Plate #</Label>
                     <TextField 
@@ -96,6 +159,7 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                {vehicleErrors.licensePlateError.length > 1 ? <Error>{vehicleErrors.licensePlateError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="vin">Vehicle Identification Number</Label>
                     <TextField 
@@ -108,6 +172,7 @@ function VehicleInfo(props) {
                          />
 
                 </TextFieldWrapper>
+                {vehicleErrors.vinError.length > 1 ? <Error>{vehicleErrors.vinError}</Error> : null}
                 <ClearFix px="10px" />
                 <Checkbox handleChange={handleChange} value={false}>
                     <a href="#">
