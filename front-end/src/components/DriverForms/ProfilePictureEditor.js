@@ -39,7 +39,7 @@ const ProfilePictureEditor = (props) => {
 
     const handleUpload = event => {
         event.preventDefault();
-
+        
         const PP = profilePictureRef.current;
         const imageData = PP.getImageAsDataUrl();
         props.handleUpload(imageData);
@@ -51,8 +51,8 @@ const ProfilePictureEditor = (props) => {
             <PPWrapper>
                 <ProfilePicture 
                     ref={profilePictureRef}
-                    useHelper={false}
-                    debug={false}
+                    useHelper={true}
+                    debug={true}
                 />
             </PPWrapper>
             <button className="btn-upload"  onClick={handleUpload}>Upload</button>
