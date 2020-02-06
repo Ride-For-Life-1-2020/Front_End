@@ -89,7 +89,7 @@ const MotherSignup = props => {
         e.preventDefault();
         const err = validate()
         if (!err) {
-            console.log(deliveryInfo)
+            props.handleUserFormSubmit({data: deliveryInfo});
         }
     }
     

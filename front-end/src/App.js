@@ -69,30 +69,10 @@ function App() {
 
   const getUserType = () => isMother ? 'mother' : 'driver';
 
-  const handleUserFormSubmit = formData => {
-    if (formData.step === 'complete') {
-      // Finish to collect signup info. Make Post (create) request here
-      // and redirect the user
-      setNewUserInfo({
-          ...newUserInfo,
-          ...formData.data
-        });
-      // =======  POST FROM HERE  ==================
+  const handleUserFormSubmit = data => {
+    setNewUserInfo(data.data);
 
-    } else {
-      if (formData.step === 1) {
-        setNewUserInfo({
-          ...newUserInfo,
-          userType: getUserType(),
-          ...formData.data
-        });
-      } else {
-        setNewUserInfo({
-          ...newUserInfo,
-          ...formData.data
-        });
-      }
-    }
+    /** ===== POST REQUEST HERE ======= */
   }
   console.log(state);
   return (
@@ -108,8 +88,8 @@ function App() {
         <Route exact path="/signup" render={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
         <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
         <Route path="/signup/mother" render={props => <MotherSignup handleUserFormSubmit={handleUserFormSubmit} />} />
-        <Route exact path="/signup/driver/step/1" render={props => <DriverInfoForm history={props.history} handleUserFormSubmit={handleUserFormSubmit} />} />
-        <Route path="/signup/driver/step/2" render={props => <VehicleInfo handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route exact path="/signup/driver/step/1" render={props => <DriverInfoForm {...props} handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route path="/signup/driver/step/2" render={props => <VehicleInfo {...props} handleUserFormSubmit={handleUserFormSubmit} />} />
        </Switch>
       <Footer />
     </div>
