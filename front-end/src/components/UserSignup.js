@@ -14,7 +14,7 @@ import { Link } from "react-router-dom"
 function UserSignup(props) {
 
     const [user, setUser] = useState({
-        firstName: "",
+        FullName: "",
         lastName: "",
         email: "",
         phone: "",
@@ -145,14 +145,14 @@ function UserSignup(props) {
                 <Header>{formTitle}</Header>
                 <TextFieldWrapper>
                     
-                    <Label htmlFor="firstName">First Name</Label>
+                    <Label htmlFor="FullName">Full Name</Label>
                     <TextField 
                         type="text" 
-                        id="firstName" 
-                        name="firstName" 
-                        value={user.firstName} 
+                        id="FullName" 
+                        name="FullName" 
+                        value={user.FullName} 
                         onChange={handleChange} 
-                        placeholder="Joe"
+                        placeholder="John Doe"
                     />
                 </TextFieldWrapper>
                 {errors.firstNameError.length > 1 ? <Error>{errors.firstNameError}</Error> : null}
