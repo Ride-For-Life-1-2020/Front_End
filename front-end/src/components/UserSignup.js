@@ -15,28 +15,24 @@ import {
 function UserSignup(props) {
 
     const [user, setUser] = useState({
-
         FullName: "",
         Email: "",
         PhoneNumber: "",
         City_ID: "",
         UserName: "",
         Password: "",
-        
-
     });
 
-    const [confirmPassword, setConfirmPassword]
+    const [ConfirmPassword, setConfirmPassword] = useState({ConfirmPassword: ""})
 
     const [errors, setErrors] = useState({
         FullNameError: "",
         EmailError: "",
         PhoneNumberError: "",
-        CityIDError: "",
+        City_IDError: "",
         UserNameError: "",
         PasswordError: "",
-        
-
+        ConfirmPasswordError: ""
     })
 
     const [nextStepLink, setNextStepLink] = useState('');
@@ -55,8 +51,11 @@ function UserSignup(props) {
     const handleChange = (e) => {
         if(e.target.name === "ConfirmPassword") {
             setConfirmPassword({[e.target.name]: e.target.value})
+        } else if (e.target.name === "City_ID") {
+            setUser({...user, [e.target.name]: parseInt(e.target.value)})
+        } else {
+            setUser({...user, [e.target.name]: e.target.value})
         }
-        setUser({...user, [e.target.name]: e.target.value})
     }
 
     const validate = () => {
@@ -66,63 +65,53 @@ function UserSignup(props) {
             FullNameError: "",
             EmailError: "",
             PhoneNumberError: "",
-            CityIDError: "",
+            City_IDError: "",
             UserNameError: "",
-            PasswordError: ""
+            PasswordError: "",
             ConfirmPasswordError: ""
         }
 
-        if (user.firstName.length < 1) {
+        if (user.FullName.length < 1) {
             isErr = true;
-            errors.firstNameError = "*First Name is a required field"
+            errors.FullNameError = "*Full Name is a required field"
         }
 
-        if (user.lastName.length < 1) {
+
+        if (!user.Email.includes("@" )) {
             isErr = true;
-            errors.lastNameError = "*Last Name is a required field"
+            errors.EmailError = "*Please enter a valid email address"
         }
 
-        if (!user.email.includes("@" )) {
+        if (user.PhoneNumber.length < 10) {
             isErr = true;
-            errors.emailError = "*Please enter a valid email address"
+            errors.PhoneNumberError = "*Please enter a phone number in this format (+256 772-000-0000)"
         }
 
-        if (user.phone.length < 10) {
+        if (user.City_ID === "") {
             isErr = true;
-            errors.phoneError = "*Please enter a phone number in this format (+256 772-000-0000)"
-            errors.phone = ""
-        }
-
-        if (user.address.length < 1) {
-            isErr = true;
-            errors.addressError = "*Address is a required field"
-        }
-
-        if (user.city.length === false) {
-            isErr = true;
-            errors.cityError = "*City is a required field"
+            errors.City_IDError = "*Please select a city from the list"
         }
 
         if (user.UserName.length < 8) {
             isErr = true;
-            errors.usernameError = "*Username must contain at least 8 characters"
+            errors.UserNameError = "*Username must contain at least 8 characters"
         }
 
 
-        if (user.Password.length < 1 && user.confirmPassword.length < 1) {
+        if (user.Password.length < 1 && ConfirmPassword.ConfirmPassword.length < 1) {
             isErr = true;
-            errors.confirmPasswordError = "*Please confirm password"
-            errors.passwordError = "*Please enter a password"
+            errors.ConfirmPasswordError = "*Please confirm password"
+            errors.PasswordError = "*Please enter a password"
         } else if (user.Password.length < 1) {
             isErr = true;
-            errors.passwordError = "*Please enter a password"
-        } else if (user.confirmPassword.length < 1){
+            errors.PasswordError = "*Please enter a password"
+        } else if (ConfirmPassword.ConfirmPassword.length < 1){
             isErr = true;
-            errors.confirmPasswordError = "*Please confirm password"
-        } else if (user.Password !== user.confirmPassword) {
+            errors.ConfirmPasswordError = "*Please confirm password"
+        } else if (user.Password !== ConfirmPassword.ConfirmPassword) {
             isErr = true;
-            errors.confirmPasswordError = "*Passwords must match"
-            errors.passwordError = "*Passwords must match"
+            errors.ConfirmPasswordError = "*Passwords must match"
+            errors.PasswordError = "*Passwords must match"
         }
 
         if (isErr) {
@@ -158,55 +147,31 @@ function UserSignup(props) {
                         placeholder="John Doe"
                     />
                 </TextFieldWrapper>
-                {errors.firstNameError.length > 1 ? <Error>{errors.firstNameError}</Error> : null}
+                {errors.FullNameError.length > 1 ? <Error>{errors.FullNameError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="lastName">Last Name</Label>
+                    <Label htmlFor="Email">Email</Label>
                     <TextField 
                         type="text" 
-                        id="lastName" 
-                        name="lastName" 
-                        value={user.lastName} 
-                        onChange={handleChange} 
-                        placeholder="Tom"
-                    />
-                </TextFieldWrapper>
-                {errors.lastNameError.length > 1 ? <Error>{errors.lastNameError}</Error> : null}
-                <TextFieldWrapper>
-                    <Label htmlFor="email">Email</Label>
-                    <TextField 
-                        type="text" 
-                        id="email" 
-                        name="email" 
-                        value={user.email} 
+                        id="Email" 
+                        name="Email" 
+                        value={user.Email} 
                         onChange={handleChange}
                         placeholder="example@fake.com" 
                     />
                 </TextFieldWrapper>
-                {errors.emailError.length > 1 ? <Error>{errors.emailError}</Error> : null}
+                {errors.EmailError.length > 1 ? <Error>{errors.EmailError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="phone">Phone (Uganda Only)</Label>
+                    <Label htmlFor="PhoneNumber">Phone (Uganda Only)</Label>
                     <TextField
                         type="text" 
-                        id="phone" 
-                        name="phone" 
-                        value={user.phone} 
+                        id="PhoneNumber" 
+                        name="PhoneNumber" 
+                        value={user.PhoneNumber} 
                         onChange={handleChange} 
                         placeholder="+256 772-000-000"
                     />
                 </TextFieldWrapper>
-                {errors.phoneError.length > 1 ? <Error>{errors.phoneError}</Error> : null}
-                <TextFieldWrapper>
-                    <Label htmlFor="address">Address</Label>
-                    <TextField
-                        id="address" 
-                        type="text"
-                        name="address" 
-                        value={user.address} 
-                        onChange={handleChange}
-                        placeholder="address" 
-                    />
-                </TextFieldWrapper>
-                {errors.addressError.length > 1 ? <Error>{errors.addressError}</Error> : null}
+                {errors.PhoneNumberError.length > 1 ? <Error>{errors.PhoneNumberError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="city">City</Label>
                     {/* <TextField 
@@ -217,7 +182,7 @@ function UserSignup(props) {
                         onChange={handleChange} 
                         placeholder="City"
                     /> */}
-                        <StyledSelectList name="city" type="select" onChange={handleChange} >
+                        <StyledSelectList id="city" name="City_ID" value={user.City_ID} type="select" onChange={handleChange} >
                             <StyledOption value="1">Kampala</StyledOption>
                             <StyledOption value="2">Gulu</StyledOption>
                             <StyledOption value="3">Lira</StyledOption>
@@ -230,43 +195,43 @@ function UserSignup(props) {
                             <StyledOption value="10">Masaka</StyledOption>
                     </StyledSelectList> 
                 </TextFieldWrapper>
-                {errors.cityError.length > 1 ? <Error>{errors.cityError}</Error> : null}
+                {errors.City_IDError.length > 1 ? <Error>{errors.City_IDError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="username">User Name</Label>
+                    <Label htmlFor="UserName">User Name</Label>
                     <TextField 
                         type="text" 
-                        id="username" 
+                        id="UserName" 
                         name="UserName" 
-                        value={user.username} 
+                        value={user.UserName} 
                         onChange={handleChange}
                         placeholder="Must contain at least 8 characters" 
                     />
                 </TextFieldWrapper>
-                {errors.usernameError.length > 1 ? <Error>{errors.usernameError}</Error> : null}
+                {errors.UserNameError.length > 1 ? <Error>{errors.UserNameError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="Password">Password</Label>
                     <TextField 
                         type="password" 
-                        id="password" 
+                        id="Password" 
                         name="Password" 
-                        value={user.password} 
+                        value={user.Password} 
                         onChange={handleChange}
                         placeholder="********" 
                     />
                 </TextFieldWrapper>
-                {errors.passwordError.length > 1 ? <Error>{errors.passwordError}</Error> : null}
+                {errors.PasswordError.length > 1 ? <Error>{errors.PasswordError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <Label htmlFor="ConfirmPassword">Confirm Password</Label>
                     <TextField 
                         type="password" 
-                        id="confirmPassword" 
-                        name="confirmPassword" 
-                        value={user.confirmPassword} 
+                        id="ConfirmPassword" 
+                        name="ConfirmPassword" 
+                        value={ConfirmPassword.ConfirmPassword} 
                         onChange={handleChange} 
                         placeholder="********"
                     />
                 </TextFieldWrapper>
-                {errors.confirmPasswordError.length > 1 ? <Error>{errors.confirmPasswordError}</Error> : null}
+                {errors.ConfirmPasswordError.length > 1 ? <Error>{errors.ConfirmPasswordError}</Error> : null}
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: `${nextStepLink}`, state: { user }}}>Next</StyledLink>
             </FormWrapper>
