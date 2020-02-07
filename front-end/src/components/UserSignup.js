@@ -15,26 +15,25 @@ function UserSignup(props) {
 
     const [user, setUser] = useState({
         FullName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        address: "",
-        city: "",
-        username: "",
-        password: "",
-        confirmPassword: ""
+        Email: "",
+        PhoneNumber: "",
+        City_ID: "",
+        UserName: "",
+        Password: "",
+        
     });
 
+    const [confirmPassword, setConfirmPassword]
+
     const [errors, setErrors] = useState({
-        firstNameError: "",
-        lastNameError: "",
-        emailError: "",
-        phoneError: "",
-        addressError: "",
-        cityError: "",
-        usernameError: "",
-        passwordError: "",
-        confirmPasswordError: ""
+        FullNameError: "",
+        EmailError: "",
+        PhoneNumberError: "",
+        CityIDError: "",
+        UserNameError: "",
+        PasswordError: "",
+        
+
     })
 
     const [nextStepLink, setNextStepLink] = useState('');
@@ -51,6 +50,9 @@ function UserSignup(props) {
     }, [])
 
     const handleChange = (e) => {
+        if(e.target.name === "ConfirmPassword") {
+            setConfirmPassword({[e.target.name]: e.target.value})
+        }
         setUser({...user, [e.target.name]: e.target.value})
     }
 
@@ -58,15 +60,13 @@ function UserSignup(props) {
         let isErr = false
 
         const errors = {
-            firstNameError: "",
-            lastNameError: "",
-            emailError: "",
-            phoneError: "",
-            addressError: "",
-            cityError: "",
-            usernameError: "",
-            passwordError: "",
-            confirmPasswordError: ""
+            FullNameError: "",
+            EmailError: "",
+            PhoneNumberError: "",
+            CityIDError: "",
+            UserNameError: "",
+            PasswordError: ""
+            ConfirmPasswordError: ""
         }
 
         if (user.firstName.length < 1) {
