@@ -15,16 +15,16 @@ const SearchForm = (props) => {
             </StyledLabel>
             <StyledLabel> Cities
                 <StyledSelectList>
-                    <StyledOption option="1">Kampala</StyledOption>
-                    <StyledOption option="2">Gulu</StyledOption>
-                    <StyledOption option="3">Lira</StyledOption>
-                    <StyledOption option="4">Mbarara</StyledOption>
-                    <StyledOption option="5">Jinja</StyledOption>
-                    <StyledOption option="6">Bwizibwera</StyledOption>
-                    <StyledOption option="7">Mbale</StyledOption>
-                    <StyledOption option="8">Mukono</StyledOption>
-                    <StyledOption option="9">Kasese</StyledOption>
-                    <StyledOption option="10">Masaka</StyledOption>
+                    <StyledOption value="1">Kampala</StyledOption>
+                    <StyledOption value="2">Gulu</StyledOption>
+                    <StyledOption value="3">Lira</StyledOption>
+                    <StyledOption value="4">Mbarara</StyledOption>
+                    <StyledOption value="5">Jinja</StyledOption>
+                    <StyledOption value="6">Bwizibwera</StyledOption>
+                    <StyledOption value="7">Mbale</StyledOption>
+                    <StyledOption value="8">Mukono</StyledOption>
+                    <StyledOption value="9">Kasese</StyledOption>
+                    <StyledOption value="10">Masaka</StyledOption>
                 </StyledSelectList> 
             </StyledLabel>
             <StyledButton onClick={props.handleClear} >Clear Search</StyledButton>

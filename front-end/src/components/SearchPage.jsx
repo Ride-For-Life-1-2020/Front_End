@@ -55,6 +55,17 @@ const SearchPage = () => {
     const handleClear = () => {
         setDrivers(initalDriverState);
     }
+    // useEffect( () => {
+    //     axios.get('https://rideforlifebackend.herokuapp.com//api/drivers', 
+    //     {
+    //         headers: {
+    //           "content-type": "application/json", // Tell the server we are sending this over as JSON
+    //           authorization: localStorage.getItem('auth-token'), // Send the token in the header from the client.
+    //         }
+    //       })
+    //     .then(response => console.log(response))
+    //     .catch(error => console.log(error));
+    // }, []);
     return(
         <StyledMain>
         <StyledTitle>Search for Drivers</StyledTitle>

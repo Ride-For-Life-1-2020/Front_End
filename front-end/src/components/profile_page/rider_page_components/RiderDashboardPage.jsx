@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import S from 'styled-components';
 import RiderProfileInformation from './RiderProfileInformation';
 import DriverCard from './DriverCard';
+import ProfileEditForm from './ProfileEditForm';
 
 const RiderDashboardPage = () => {
+
+    const [editProfileIsOpen, setEditProfileIsOpen] = useState(false);
+
+    const openProfileEditForm = () => {
+        if(editProfileIsOpen === false) {
+            setEditProfileIsOpen(true);
+        } else {
+            setEditProfileIsOpen(false);
+        }
+    }
     return(
         <StyledMain>
             <HeaderContainer>
@@ -14,6 +25,8 @@ const RiderDashboardPage = () => {
                 <StyledName>James Bond</StyledName>
             </HeaderContainer>
             <StyledSection>
+            <StyledEditButton onClick={openProfileEditForm}>Edit Profile</StyledEditButton>
+            {editProfileIsOpen ? <ProfileEditForm /> : null}
                 <RiderProfileInformation />
                 <CardContainer>
                 <StyledTitle>Driver</StyledTitle>
@@ -83,4 +96,9 @@ const CardContainer = S.div`
     padding-left: 50px;
     box-sizing: border-box;
     width: 60%;
+`;
+const StyledEditButton = S.div`
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 `;

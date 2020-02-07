@@ -1,8 +1,8 @@
 const token = localStorage.getItem('auth-token');
-
+const username = localStorage.getItem('username');
 const initalState = {
     isLoggedIn: token ? true : false,
-    loggedInUser: {},
+    loggedInUser: username ? username : '',
     userRole: {
         driver: false,
         patient: false
