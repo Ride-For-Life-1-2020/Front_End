@@ -21,7 +21,7 @@ function App() {
 
   const state = useSelector(state => state);
   const isLogged = useSelector(state => state.root.isLoggedIn);
-   const [newUserInfo, setNewUserInfo] = useState({})
+  const [newUserInfo, setNewUserInfo] = useState({})
 
   // useEffect( () => {
   //   axios.get('/login')
@@ -42,9 +42,9 @@ function App() {
 
 
   const handleUserFormSubmit = data => {
-    setNewUserInfo(data.data);
-    /** ===== POST REQUEST HERE ======= */
+    // setNewUserInfo(data.data);
   }
+  
   console.log(state);
   return (
 
