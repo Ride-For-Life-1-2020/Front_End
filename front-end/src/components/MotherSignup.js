@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 
 import { 
     Container, 
@@ -18,20 +19,17 @@ const MotherSignup = props => {
     const data = props.location.state.user
 
     const [deliveryInfo, setDeliveryInfo] = useState({...data,
-        dueDate: '',
-        hospitalName: '',
-        hospitalAddress: '',
-        hospitalCity: '',
-        hospitalPhone: '',
-        termsAndConditions: false 
+        Address: "",
+        DueDate: '',
+        HospitalName: '',
+        HospitalAddress: ''
     })
 
     const [deliveryInfoErrors, setDeliveryInfoErrors] = useState({
-        dueDateError: '',
-        hospitalNameError: '',
-        hospitalAddressError: '',
-        hospitalCityError: '',
-        hospitalPhoneError: ''
+        AddressError: '',
+        DueDateError: '',
+        HospitalNameError: '',
+        HospitalAddressError: ''
     })
     
     
@@ -45,38 +43,31 @@ const MotherSignup = props => {
         let isErr = false
 
         const errors = {
-            dueDateError: '',
-            hospitalNameError: '',
-            hospitalAddressError: '',
-            hospitalCityError: '',
-            hospitalPhoneError: ''
+            AddressError: '',
+            DueDateError: '',
+            HospitalNameError: '',
+            HospitalAddressError: ''
         }
 
-        if (deliveryInfo.dueDate.length < 1) {
+        if (deliveryInfo.DueDate.length < 1) {
             isErr = true
-            errors.dueDateError = "Due Date is a required field";
+            errors.DueDateError = "Due Date is a required field";
         }
 
-        if (deliveryInfo.hospitalName.length < 1) {
+        if (deliveryInfo.Address.length < 1) {
             isErr = true
-            errors.hospitalNameError= "Hospital Name is a required field";
+            errors.AddressError= "Address is a required field";
         }
 
-        if (deliveryInfo.hospitalAddress.length < 1) {
+        if (deliveryInfo.HospitalName.length < 1) {
             isErr = true
-            errors.hospitalAddressError = "Hospital Address is a required field";
+            errors.HospitalNameError= "Hospital Name is a required field";
         }
 
-        if (deliveryInfo.hospitalCity.length < 1) {
+        if (deliveryInfo.HospitalAddress.length < 1) {
             isErr = true
-            errors.hospitalCityError = "Hospital City is a required field";
+            errors.HospitalAddressError = "Hospital Address is a required field";
         }
-
-        if (deliveryInfo.hospitalPhone.length < 10) {
-            isErr = true
-            errors.hospitalPhoneError = "Please enter a phone number in this format: (+256) 772-000-0000";
-        }
-
 
         if (isErr) {
             setDeliveryInfoErrors({...deliveryInfoErrors, ...errors})
@@ -87,50 +78,63 @@ const MotherSignup = props => {
 
     /** POST REQUEST */
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const err = validate()
-        if (!err) {
-            props.handleUserFormSubmit({data: deliveryInfo});
+        const fireApiCall = () => {
+            const err = validate();
+            if(err === true) {
+                e.preventDefault();
+            } 
+            else if( err === false) {
+                e.preventDefault();
+                axios.post(`https://rideforlifebackend.herokuapp.com/api/patients/signup`, deliveryInfo,
+                {
+                    headers: {
+                        "content-type": "application/json" // Tell the server we are sending this over as JSON
+                    }
+                })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch( error => {
+                    console.log(error);
+                });
+            }
         }
+        fireApiCall();
     }
+    
     
     
     return (
         <Container>
             <ClearFix px="15px" />
             <FormWrapper onSubmit={handleSubmit}>
-                <H2>Tell us about your delivery</H2>
+                <H2>Mother Information (cont.)</H2>
                 <TextFieldWrapper>
-                    <Label htmlFor="dueDate">Due date</Label>
-                    <TextField id="dueDate" value={deliveryInfo.dueDate} type="date" name="dueDate" onChange={handleChange} />
+                    <Label htmlFor="Address">Address</Label>
+                    <TextField placeholder="Address" id="Address" value={deliveryInfo.Address} type="text" name="Address" onChange={handleChange} />
                 </TextFieldWrapper>
-                {deliveryInfoErrors.dueDateError.length > 1 ? <Error>{deliveryInfoErrors.dueDateError}</Error> : null}
+                {deliveryInfoErrors.AddressError.length > 1 ? <Error>{deliveryInfoErrors.AddressError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="hospitalName">Hospital Name</Label>
-                    <TextField placeholder="Hospital Name" id="hospitalName" value={deliveryInfo.hospitalName} type="text" name="hospitalName" onChange={handleChange} />
+                    <Label htmlFor="DueDate">Due date</Label>
+                    <TextField id="DueDate" value={deliveryInfo.DueDate} type="date" name="DueDate" onChange={handleChange} />
                 </TextFieldWrapper>
-                {deliveryInfoErrors.hospitalNameError.length > 1 ? <Error>{deliveryInfoErrors.hospitalNameError}</Error> : null}
+                {deliveryInfoErrors.DueDateError.length > 1 ? <Error>{deliveryInfoErrors.DueDateError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="hospitalAddress">Hospital Address</Label>
-                    <TextField placeholder="Address" id="hospitalAddress" value={deliveryInfo.hospitalAddress} type="text" name="hospitalAddress" onChange={handleChange} />
+                    <Label htmlFor="HospitalName">Hospital Name</Label>
+                    <TextField placeholder="Hospital Name" id="HospitalName" value={deliveryInfo.HospitalName} type="text" name="HospitalName" onChange={handleChange} />
                 </TextFieldWrapper>
-                {deliveryInfoErrors.hospitalAddressError.length > 1 ? <Error>{deliveryInfoErrors.hospitalAddressError}</Error> : null}
+                {deliveryInfoErrors.HospitalNameError.length > 1 ? <Error>{deliveryInfoErrors.HospitalNameError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="hospitalCity">Hospital City</Label>
-                    <TextField placeholder="Ex. Kampala" id="hospitalCity" value={deliveryInfo.hospitalCity} type="text" name="hospitalCity" onChange={handleChange} />
+                    <Label htmlFor="HospitalAddress">Hospital Address</Label>
+                    <TextField placeholder="Address" id="HospitalAddress" value={deliveryInfo.HospitalAddress} type="text" name="HospitalAddress" onChange={handleChange} />
                 </TextFieldWrapper>
-                {deliveryInfoErrors.hospitalCityError.length > 1 ? <Error>{deliveryInfoErrors.hospitalCityError}</Error> : null}
-                <TextFieldWrapper>
-                    <Label htmlFor="hospitalPhone">Hospital Phone</Label>
-                    <TextField placeholder="+256 772-000-000" id="hospitalPhone" value={deliveryInfo.hospitalPhone} type="phone" name="hospitalPhone" onChange={handleChange} />
-                </TextFieldWrapper>
-                {deliveryInfoErrors.hospitalPhoneError.length > 1 ? <Error>{deliveryInfoErrors.hospitalPhoneError}</Error> : null}
+                {deliveryInfoErrors.HospitalAddressError.length > 1 ? <Error>{deliveryInfoErrors.HospitalAddressError}</Error> : null}
                 <ClearFix px="10px" />
-                <Checkbox handleChange={handleChange} value={deliveryInfo.termsAndConditions}>
+                {/* <Checkbox handleChange={handleChange} value={deliveryInfo.termsAndConditions}>
                     <a href="#">
                         Terms and Conditions
                     </a>
-                </Checkbox>
+                </Checkbox> */}
                 <ClearFix px="15px" />
                 <Button type="submit">Complete</Button>
             </FormWrapper>

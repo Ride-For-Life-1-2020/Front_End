@@ -19,47 +19,41 @@ function DriverInfo(props) {
 
     const [driver, setDriver] = useState({
         ...data,
-        dob: "",
-        licenseNumber: "",
-        insuranceCompany: "",
-        policyNumber: "",
+        DateOfBirth: "",
+        InsuranceCompany: "",
+        PolicyNumber: "",
+        Price: 50,
+        Shift: "AM"
     })
 
     const [driverErrors, setDriverErrors] = useState({
-        dobError: "",
-        licenseNumberError: "",
-        insuranceCompanyError: "",
-        policyNumberError: ""
+        DateOfBirthError: "",
+        InsuranceCompanyError: "",
+        PolicyNumberError: ""
     })
 
     const validate = () => {
         let isErr = false;
 
         const errors = {
-            dobError: "",
-            licenseNumberError: "",
-            insuranceCompanyError: "",
-            policyNumberError: ""
+            DateOfBirthError: "",
+            InsuranceCompanyError: "",
+            PolicyNumberError: ""
         }
 
-        if (driver.dob.length < 1) {
+        if (driver.DateOfBirth.length < 1) {
             isErr = true;
-            errors.dobError = "Date of Birth is a required field"
+            errors.DateOfBirthError = "Date of Birth is a required field"
         }
 
-        if (driver.licenseNumber.length < 1) {
+        if (driver.InsuranceCompany.length < 1) {
             isErr = true;
-            errors.licenseNumberError = "License Number is a required field"
+            errors.InsuranceCompanyError = "Insurance Company is a required field"
         }
 
-        if (driver.insuranceCompany.length < 1) {
+        if (driver.PolicyNumber.length < 1) {
             isErr = true;
-            errors.insuranceCompanyError = "Insurance Company is a required field"
-        }
-
-        if (driver.policyNumber.length < 1) {
-            isErr = true;
-            errors.policyNumberError = "Date of Birth is a required field"
+            errors.PolicyNumberError = "Policy Number is a required field"
         }
 
         if (isErr) {
@@ -71,7 +65,11 @@ function DriverInfo(props) {
     }
 
     const handleChange = (e) => {
-        setDriver({...driver, [e.target.name]: e.target.value})
+        if (e.target.name === "PolicyNumber") {
+            setDriver({...driver, [e.target.name]: parseInt(e.target.value)})
+        } else {
+            setDriver({...driver, [e.target.name]: e.target.value})
+        }
     }
 
     const handleClick = e => {
@@ -103,50 +101,37 @@ function DriverInfo(props) {
             <FormWrapper onSubmit={handleSubmit}>
                 <Header>Driver Information (cont.)</Header>
                 <TextFieldWrapper>
-                    <Label htmlFor="dob">Date of Birth</Label>
+                    <Label htmlFor="DateOfBirth">Date of Birth</Label>
                     <TextField 
                         type="date"
-                        id="dob"
-                        name="dob"
-                        value={driver.dob}
+                        id="DateOfBirth"
+                        name="DateOfBirth"
+                        value={driver.DateOfBirth}
                         onChange={handleChange}
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.dobError.length > 1 ? <Error>{driverErrors.dobError}</Error> : null}
-                <TextFieldWrapper>
-                    <Label htmlFor="licenseNumber">License Number</Label>
+                {driverErrors.DateOfBirthError.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
+               <TextFieldWrapper>
+                    <Label htmlFor="InsuranceCompany">Insurance Company</Label>
                     <TextField 
                         type="text"
-                        id="licenseNumber"
-                        name="licenseNumber"
-                        value={driver.licenseNumber}
-                        onChange={handleChange}
-                        placeholder="License Number"
-                         />
-
-                </TextFieldWrapper>
-                {driverErrors.licenseNumberError.length > 1 ? <Error>{driverErrors.licenseNumberError}</Error> : null}
-                <TextFieldWrapper>
-                    <Label htmlFor="insuranceCompany">Insurance Company</Label>
-                    <TextField 
-                        type="text"
-                        id="insuranceCompany"
-                        name="insuranceCompany"
-                        value={driver.insuranceCompany}
+                        id="InsuranceCompany"
+                        name="InsuranceCompany"
+                        value={driver.InsuranceCompany}
                         onChange={handleChange}
                         placeholder="Insurance Company"
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.policyNumberError.length > 1 ? <Error>{driverErrors.insuranceCompanyError}</Error> : null}
+                {driverErrors.InsuranceCompanyError.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="policyNumber">Policy Number</Label>
+                    <Label htmlFor="PolicyNumber">Policy Number</Label>
                     <TextField 
                         type="text"
-                        id="policyNumber"
-                        name="policyNumber"
-                        value={driver.policyNumber}
+                        id="PolicyNumber"
+                        name="PolicyNumber"
+                        value={driver.PolicyNumber}
                         onChange={handleChange}
                         placeholder="Policy Number"
                          />

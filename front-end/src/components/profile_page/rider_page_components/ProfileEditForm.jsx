@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import S from 'styled-components';
@@ -6,14 +6,15 @@ import S from 'styled-components';
 const ProfileEditForm = (props) => {
 
     const username = useSelector(state => state.root.loggedInUser);
+    
     const [editedUser, setEditedUser] = useState({
         FullName: '',
         Email: "",
         PhoneNumber: "",
         Address: "",
         City_ID: "",
-        UserName: "",
         Password: "",
+        DueDate: '',
     });
     const handleChange = (e) => {
         console.log(e.target.value);
@@ -21,34 +22,31 @@ const ProfileEditForm = (props) => {
         setEditedUser({...editedUser, [e.target.name]: e.target.value})
     }
     const handleSubmit = () => {
-        axios.put(`https://rideforlifebackend.herokuapp.com/api/patients/${username}`, editedUser)
+        axios.put(`https://rideforlifebackend.herokuapp.com/api/patients/${username}`, editedUser, {
+            headers: {
+                "content-type": "application/json", // Tell the server we are sending this over as JSON
+                'authorization': localStorage.getItem('auth-token'), // Send the token in the header from the client.
+            }
+        })
         .then(response => {
             console.log(response);
+            props.setProfileUser({...response.data});
         })
         .catch(error => {
             console.log(error);
         })
     }
+
 return(
     <div>
             <StyledForm>
                 <StyledTitle>Edit Profile</StyledTitle>
-                    <StyledLabel htmlFor="firstName">First Name
-                    <StyledInput 
-                        type="text" 
-                        id="firstName" 
-                        name="firstName" 
-                        value={editedUser.firstName} 
-                        onChange={handleChange} 
-                        placeholder="Joe"
-                    />
-                    </StyledLabel>
-                    <StyledLabel htmlFor="lastName">Last Name
+                    <StyledLabel htmlFor="lastName">Full Name
                     <StyledInput 
                         type="text" 
                         id="lastName" 
-                        name="lastName" 
-                        value={editedUser.lastName} 
+                        name="FullName" 
+                        value={editedUser.FullName} 
                         onChange={handleChange} 
                         placeholder="Tom"
                     />
@@ -57,18 +55,28 @@ return(
                     <StyledInput 
                         type="text" 
                         id="email" 
-                        name="email" 
-                        value={editedUser.email} 
+                        name="Email" 
+                        value={editedUser.Email} 
                         onChange={handleChange}
                         placeholder="example@fake.com" 
                     />
                     </StyledLabel>
-                    <StyledLabel htmlFor="phone">Phone (Uganda Only)
+                    <StyledLabel >Due Date
+                    <StyledInput
+                        type="date" 
+                        id="duedate" 
+                        name="DueDate" 
+                        value={editedUser.DueDate} 
+                        onChange={handleChange} 
+                        placeholder="+256 772-000-000"
+                    />
+                    </StyledLabel>
+                    <StyledLabel >Phone (Uganda Only)
                     <StyledInput
                         type="text" 
                         id="phone" 
-                        name="phone" 
-                        value={editedUser.phone} 
+                        name="PhoneNumber" 
+                        value={editedUser.Phone} 
                         onChange={handleChange} 
                         placeholder="+256 772-000-000"
                     />
@@ -77,14 +85,14 @@ return(
                     <StyledInput
                         id="address" 
                         type="text"
-                        name="address" 
-                        value={editedUser.address} 
+                        name="Address" 
+                        value={editedUser.Address} 
                         onChange={handleChange}
                         placeholder="address" 
                     />
                     </StyledLabel>
                     <StyledLabel htmlFor="city">City
-                        <StyledSelectList name="city" type="select" onChange={handleChange} >
+                        <StyledSelectList name="City_ID" type="select" onChange={handleChange} >
                             <StyledOption value="1">Kampala</StyledOption>
                             <StyledOption value="2">Gulu</StyledOption>
                             <StyledOption value="3">Lira</StyledOption>
@@ -97,34 +105,14 @@ return(
                             <StyledOption value="10">Masaka</StyledOption>
                         </StyledSelectList> 
                     </StyledLabel>
-                    <StyledLabel htmlFor="username">User Name
-                    <StyledInput 
-                        type="text" 
-                        id="username" 
-                        name="UserName" 
-                        value={editedUser.username} 
-                        onChange={handleChange}
-                        placeholder="Must contain at least 8 characters" 
-                    />
-                    </StyledLabel>
                     <StyledLabel htmlFor="password">Password
                     <StyledInput 
                         type="password" 
                         id="password" 
                         name="Password" 
-                        value={editedUser.password} 
+                        value={editedUser.Password} 
                         onChange={handleChange}
                         placeholder="********" 
-                    />
-                    </StyledLabel>
-                    <StyledLabel htmlFor="confirmPassword">Confirm Password
-                    <StyledInput 
-                        type="password" 
-                        id="confirmPassword" 
-                        name="confirmPassword" 
-                        value={editedUser.confirmPassword} 
-                        onChange={handleChange} 
-                        placeholder="********"
                     />
                     </StyledLabel>
                 <div onClick={handleSubmit}>submit</div>
