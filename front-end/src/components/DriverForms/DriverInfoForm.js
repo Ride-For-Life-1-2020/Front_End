@@ -1,4 +1,4 @@
-   import React, {useState} from "react"
+import React, {useState} from "react"
 import { 
     Container, 
     Header,
@@ -10,7 +10,7 @@ import {
     Error,
     StyledLink } from './../styled-components'
 import ProfilePictureEditor from "../ProfilePictureSelector/ProfilePictureEditor"
-
+import {firestore} from './../../libs/firebase';
  
 
 function DriverInfo(props) {
@@ -23,7 +23,6 @@ function DriverInfo(props) {
         licenseNumber: "",
         insuranceCompany: "",
         policyNumber: "",
-        profilePicture: ""
     })
 
     const [driverErrors, setDriverErrors] = useState({
@@ -83,9 +82,14 @@ function DriverInfo(props) {
     }
 
     const handlePPUpload = data => {
-        setDriver({
-            ...driver,
-            profilePicture: data 
+        const userData = {
+            username: 'test',
+            imageData: data
+        };
+
+        const userImagesRef = firestore.collection('userImages')
+        userImagesRef.add(userData).then(ref => {
+            console.log(ref);
         })
     }
 
