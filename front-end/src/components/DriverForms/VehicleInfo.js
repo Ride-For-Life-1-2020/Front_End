@@ -20,63 +20,63 @@ function VehicleInfo(props) {
 
     const [vehicle, setVehicle] = useState({
         ...data,
-        vehicleMake: "",
-        vehicleModel: "",
-        year: "",
-        mileage: "",
-        licensePlate: "",
-        vin: ""
+        VehicleMake: "",
+        VehicleModel: "",
+        Year: "",
+        Mileage: "",
+        LicensePlate: "",
+        Vin: ""
     })
 
     const [vehicleErrors, setVehicleErrors] = useState({
-        vehicleMakeError: "",
-        vehicleModelError: "",
-        yearError: "",
-        mileageError: "",
-        licensePlateError: "",
-        vinError: ""
+        VehicleMakeError: "",
+        VehicleModelError: "",
+        YearError: "",
+        MileageError: "",
+        LicensePlateError: "",
+        VinError: ""
     })
 
     const validate = () => {
         let isErr = false
 
         const errors = {
-            vehicleMakeError: "",
-            vehicleModelError: "",
-            yearError: "",
-            mileageError: "",
-            licensePlateError: "",
-            vinError: ""
+            VehicleMakeError: "",
+            VehicleModelError: "",
+            YearError: "",
+            MileageError: "",
+            LicensePlateError: "",
+            VinError: ""
         }
 
-        if (vehicle.vehicleMake.length < 1) {
+        if (vehicle.VehicleMake.length < 1) {
             isErr = true;
-            errors.vehicleMakeError = "Vehicle Make is a required field"
+            errors.VehicleMakeError = "Vehicle Make is a required field"
         }
 
-        if (vehicle.vehicleModel.length < 1) {
+        if (vehicle.VehicleModel.length < 1) {
             isErr = true;
-            errors.vehicleModelError = "Vehicle Model is a required field"
+            errors.VehicleModelError = "Vehicle Model is a required field"
         }
 
-        if (vehicle.year.length < 1) {
+        if (vehicle.Year.length < 1) {
             isErr = true;
-            errors.yearError = "Year is a required field"
+            errors.YearError = "Year is a required field"
         }
 
-        if (vehicle.mileage.length < 1) {
+        if (vehicle.Mileage.length < 1) {
             isErr = true;
-            errors.mileageError = "Mileage is a required field"
+            errors.MileageError = "Mileage is a required field"
         }
 
-        if (vehicle.licensePlate.length < 1) {
+        if (vehicle.LicensePlate.length < 1) {
             isErr = true;
-            errors.licensePlateError = "License Plate is a required field"
+            errors.LicensePlateError = "License Plate is a required field"
         }
 
-        if (vehicle.vin.length < 1) {
+        if (vehicle.Vin.length < 1) {
             isErr = true;
-            errors.vinError = "Vehicle Identification Number is a required field"
+            errors.VinError = "Vehicle Identification Number is a required field"
         }
 
         if (isErr) {
@@ -129,83 +129,83 @@ function VehicleInfo(props) {
             <FormWrapper onSubmit={handleSubmit}>
                 <Header>Vehicle Information</Header>
                 <TextFieldWrapper>
-                    <Label htmlFor="vehicleMake">Vehicle Make</Label>
+                    <Label htmlFor="VehicleMake">Vehicle Make</Label>
                     <TextField 
                         type="text"
-                        id="vehicleMake"
-                        name="vehicleMake"
-                        value={vehicle.vehicleMake}
+                        id="VehicleMake"
+                        name="VehicleMake"
+                        value={vehicle.VehicleMake}
                         onChange={handleChange}
                         placeholder="Vehicle Make"
                          />
 
                 </TextFieldWrapper>
-                {vehicleErrors.vehicleMakeError.length > 1 ? <Error>{vehicleErrors.vehicleMakeError}</Error> : null}
+                {vehicleErrors.VehicleMakeError.length > 1 ? <Error>{vehicleErrors.VehicleMakeError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="vehicleModel">Vehicle Model</Label>
+                    <Label htmlFor="VehicleModel">Vehicle Model</Label>
                     <TextField 
                         type="text"
-                        id="vehicleModel"
-                        name="vehicleModel"
-                        value={vehicle.vehicleModel}
+                        id="VehicleModel"
+                        name="VehicleModel"
+                        value={vehicle.VehicleModel}
                         onChange={handleChange}
                         placeholder="Vehicle Model"
                          />
 
                 </TextFieldWrapper>
-                {vehicleErrors.vehicleModelError.length > 1 ? <Error>{vehicleErrors.vehicleModelError}</Error> : null}
+                {vehicleErrors.VehicleModelError.length > 1 ? <Error>{vehicleErrors.VehicleModelError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="year">Year</Label>
+                    <Label htmlFor="Year">Year</Label>
                     <TextField 
                         type="text"
-                        id="year"
-                        name="year"
-                        value={vehicle.year}
+                        id="Year"
+                        name="Year"
+                        value={vehicle.Year}
                         onChange={handleChange}
                         placeholder="Year"
                          />
 
                 </TextFieldWrapper>
-                {vehicleErrors.yearError.length > 1 ? <Error>{vehicleErrors.yearError}</Error> : null}
+                {vehicleErrors.YearError.length > 1 ? <Error>{vehicleErrors.YearError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="mileage">Mileage</Label>
+                    <Label htmlFor="Mileage">Mileage</Label>
                     <TextField 
                         type="text"
-                        id="mileage"
-                        name="mileage"
-                        value={vehicle.mileage}
+                        id="Mileage"
+                        name="Mileage"
+                        value={vehicle.Mileage}
                         onChange={handleChange}
                         placeholder="Mileage"
                          />
 
                 </TextFieldWrapper>
-                {vehicleErrors.mileageError.length > 1 ? <Error>{vehicleErrors.mileageError}</Error> : null}
+                {vehicleErrors.MileageError.length > 1 ? <Error>{vehicleErrors.MileageError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="licensePlate">License Plate #</Label>
+                    <Label htmlFor="LicensePlate">License Plate #</Label>
                     <TextField 
                         type="text"
-                        id="licensePlate"
-                        name="licensePlate"
-                        value={vehicle.licensePlate}
+                        id="LicensePlate"
+                        name="LicensePlate"
+                        value={vehicle.LicensePlate}
                         onChange={handleChange}
                         placeholder="License Plate #"
                          />
 
                 </TextFieldWrapper>
-                {vehicleErrors.licensePlateError.length > 1 ? <Error>{vehicleErrors.licensePlateError}</Error> : null}
+                {vehicleErrors.LicensePlateError.length > 1 ? <Error>{vehicleErrors.LicensePlateError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="vin">Vehicle Identification Number</Label>
+                    <Label htmlFor="Vin">Vehicle Identification Number</Label>
                     <TextField 
                         type="text"
-                        id="vin"
-                        name="vin"
-                        value={vehicle.vin}
+                        id="Vin"
+                        name="Vin"
+                        value={vehicle.Vin}
                         onChange={handleChange}
                         placeholder="VIN"
                          />
 
                 </TextFieldWrapper>
-                {vehicleErrors.vinError.length > 1 ? <Error>{vehicleErrors.vinError}</Error> : null}
+                {vehicleErrors.VinError.length > 1 ? <Error>{vehicleErrors.VinError}</Error> : null}
                 <ClearFix px="10px" />
                 <Checkbox handleChange={handleChange} value={false}>
                     <a href="#">

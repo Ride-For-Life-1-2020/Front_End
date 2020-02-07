@@ -18,47 +18,50 @@ function DriverInfo(props) {
 
     const [driver, setDriver] = useState({
         ...data,
-        dob: "",
-        licenseNumber: "",
-        insuranceCompany: "",
-        policyNumber: ""
+        DateOfBirth: "",
+        LicenseNumber: "",
+        InsuranceCompany: "",
+        PolicyNumber: "",
+        Price: 50,
+        Shift: "8am to 4pm"
+
     })
 
     const [driverErrors, setDriverErrors] = useState({
-        dobError: "",
-        licenseNumberError: "",
-        insuranceCompanyError: "",
-        policyNumberError: ""
+        DateOfBirthError: "",
+        LicenseNumberError: "",
+        InsuranceCompanyError: "",
+        PolicyNumberError: ""
     })
 
     const validate = () => {
         let isErr = false;
 
         const errors = {
-            dobError: "",
-            licenseNumberError: "",
-            insuranceCompanyError: "",
-            policyNumberError: ""
+            DateOfBirthError: "",
+            LicenseNumberError: "",
+            InsuranceCompanyError: "",
+            PolicyNumberError: ""
         }
 
-        if (driver.dob.length < 1) {
+        if (driver.DateOfBirth.length < 1) {
             isErr = true;
-            errors.dobError = "Date of Birth is a required field"
+            errors.DateOfBirthError = "Date of Birth is a required field"
         }
 
-        if (driver.licenseNumber.length < 1) {
+        if (driver.LicenseNumber.length < 1) {
             isErr = true;
-            errors.licenseNumberError = "License Number is a required field"
+            errors.LicenseNumberError = "License Number is a required field"
         }
 
-        if (driver.insuranceCompany.length < 1) {
+        if (driver.InsuranceCompany.length < 1) {
             isErr = true;
-            errors.insuranceCompanyError = "Insurance Company is a required field"
+            errors.InsuranceCompanyError = "Insurance Company is a required field"
         }
 
-        if (driver.policyNumber.length < 1) {
+        if (driver.PolicyNumber.length < 1) {
             isErr = true;
-            errors.policyNumberError = "Date of Birth is a required field"
+            errors.PolicyNumberError = "Policy Number is a required field"
         }
 
         if (isErr) {
@@ -88,56 +91,56 @@ function DriverInfo(props) {
             <FormWrapper>
                 <Header>Driver Information (cont.)</Header>
                 <TextFieldWrapper>
-                    <Label htmlFor="dob">Date of Birth</Label>
+                    <Label htmlFor="DateOfBirth">Date of Birth</Label>
                     <TextField 
                         type="date"
-                        id="dob"
-                        name="dob"
-                        value={driver.dob}
+                        id="DateOfBirth"
+                        name="DateOfBirth"
+                        value={driver.DateOfBirth}
                         onChange={handleChange}
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.dobError.length > 1 ? <Error>{driverErrors.dobError}</Error> : null}
+                {driverErrors.DateOfBirthError.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="licenseNumber">License Number</Label>
+                    <Label htmlFor="LicenseNumber">License Number</Label>
                     <TextField 
                         type="text"
-                        id="licenseNumber"
-                        name="licenseNumber"
-                        value={driver.licenseNumber}
+                        id="LicenseNumber"
+                        name="LicenseNumber"
+                        value={driver.LicenseNumber}
                         onChange={handleChange}
                         placeholder="License Number"
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.licenseNumberError.length > 1 ? <Error>{driverErrors.licenseNumberError}</Error> : null}
+                {driverErrors.LicenseNumberError.length > 1 ? <Error>{driverErrors.LicenseNumberError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="insuranceCompany">Insurance Company</Label>
+                    <Label htmlFor="InsuranceCompany">Insurance Company</Label>
                     <TextField 
                         type="text"
-                        id="insuranceCompany"
-                        name="insuranceCompany"
-                        value={driver.insuranceCompany}
+                        id="InsuranceCompany"
+                        name="InsuranceCompany"
+                        value={driver.InsuranceCompany}
                         onChange={handleChange}
                         placeholder="Insurance Company"
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.policyNumberError.length > 1 ? <Error>{driverErrors.insuranceCompanyError}</Error> : null}
+                {driverErrors.InsuranceCompanyError.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
                 <TextFieldWrapper>
-                    <Label htmlFor="policyNumber">Policy Number</Label>
+                    <Label htmlFor="PolicyNumber">Policy Number</Label>
                     <TextField 
                         type="text"
-                        id="policyNumber"
-                        name="policyNumber"
-                        value={driver.policyNumber}
+                        id="PolicyNumber"
+                        name="PolicyNumber"
+                        value={driver.PolicyNumber}
                         onChange={handleChange}
                         placeholder="Policy Number"
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.policyNumberError.length > 1 ? <Error>{driverErrors.policyNumberError}</Error> : null}
+                {driverErrors.PolicyNumberError.length > 1 ? <Error>{driverErrors.PolicyNumberError}</Error> : null}
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
             </FormWrapper>
