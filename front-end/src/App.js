@@ -22,7 +22,6 @@ function App() {
 
   const state = useSelector(state => state);
   const isLogged = useSelector(state => state.root.isLoggedIn);
-
   // useEffect( () => {
   //   axios.get('/login')
   //   .then( response => {

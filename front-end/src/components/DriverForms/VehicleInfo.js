@@ -11,6 +11,7 @@ import {
     Checkbox,
     Error,
  } from './../styled-components'
+ import axios from 'axios';
 
 function VehicleInfo(props) {
 
@@ -88,16 +89,30 @@ function VehicleInfo(props) {
         setVehicle({...vehicle, [e.target.name]: e.target.value})
     }
 
-    /** POST REQUEST */
-    const handleSubmit = e => {
-        e.preventDefault();
-        const err = validate()
-        if (!err) {
-            props.handleUserFormSubmit({data: vehicle});
+    const handleSubmit = (e) => {
+        const fireApiCall = () => {
+            const err = validate();
+            if(err === true) {
+                e.preventDefault();
+            } 
+            else if( err === false) {
+                e.preventDefault();
+                axios.post(`https://rideforlifebackend.herokuapp.com/api/drivers/signup`, vehicle,
+                {
+                    headers: {
+                      "content-type": "application/json" // Tell the server we are sending this over as JSON
+                  }
+                })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch( error => {
+                    console.log(error);
+                });
+            }
         }
+        fireApiCall();
     }
-
-    console.log(vehicle)
 
     return (
         <Container>

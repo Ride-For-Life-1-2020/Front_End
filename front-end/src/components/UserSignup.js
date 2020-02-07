@@ -8,8 +8,9 @@ import {
     TextField, 
     Label,
     ClearFix, 
-    Error } from './styled-components'
-import { Link } from "react-router-dom"
+    Error } from './styled-components';
+
+    import S from 'styled-components';
 
 function UserSignup(props) {
 
@@ -20,8 +21,8 @@ function UserSignup(props) {
         phone: "",
         address: "",
         city: "",
-        username: "",
-        password: "",
+        UserName: "",
+        Password: "",
         confirmPassword: ""
     });
 
@@ -51,6 +52,8 @@ function UserSignup(props) {
     }, [])
 
     const handleChange = (e) => {
+        console.log(e.target.value);
+        console.log(e.target);
         setUser({...user, [e.target.name]: e.target.value})
     }
 
@@ -95,28 +98,28 @@ function UserSignup(props) {
             errors.addressError = "*Address is a required field"
         }
 
-        if (user.city.length < 1) {
+        if (user.city.length === false) {
             isErr = true;
             errors.cityError = "*City is a required field"
         }
 
-        if (user.username.length < 8) {
+        if (user.UserName.length < 8) {
             isErr = true;
             errors.usernameError = "*Username must contain at least 8 characters"
         }
 
 
-        if (user.password.length < 1 && user.confirmPassword.length < 1) {
+        if (user.Password.length < 1 && user.confirmPassword.length < 1) {
             isErr = true;
             errors.confirmPasswordError = "*Please confirm password"
             errors.passwordError = "*Please enter a password"
-        } else if (user.password.length < 1) {
+        } else if (user.Password.length < 1) {
             isErr = true;
             errors.passwordError = "*Please enter a password"
         } else if (user.confirmPassword.length < 1){
             isErr = true;
             errors.confirmPasswordError = "*Please confirm password"
-        } else if (user.password !== user.confirmPassword) {
+        } else if (user.Password !== user.confirmPassword) {
             isErr = true;
             errors.confirmPasswordError = "*Passwords must match"
             errors.passwordError = "*Passwords must match"
@@ -206,14 +209,26 @@ function UserSignup(props) {
                 {errors.addressError.length > 1 ? <Error>{errors.addressError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="city">City</Label>
-                    <TextField 
+                    {/* <TextField 
                         type="text" 
                         id="city" 
                         name="city" 
                         value={user.city} 
                         onChange={handleChange} 
                         placeholder="City"
-                    />
+                    /> */}
+                        <StyledSelectList name="city" type="select" onChange={handleChange} >
+                            <StyledOption value="1">Kampala</StyledOption>
+                            <StyledOption value="2">Gulu</StyledOption>
+                            <StyledOption value="3">Lira</StyledOption>
+                            <StyledOption value="4">Mbarara</StyledOption>
+                            <StyledOption value="5">Jinja</StyledOption>
+                            <StyledOption value="6">Bwizibwera</StyledOption>
+                            <StyledOption value="7">Mbale</StyledOption>
+                            <StyledOption value="8">Mukono</StyledOption>
+                            <StyledOption value="9">Kasese</StyledOption>
+                            <StyledOption value="10">Masaka</StyledOption>
+                    </StyledSelectList> 
                 </TextFieldWrapper>
                 {errors.cityError.length > 1 ? <Error>{errors.cityError}</Error> : null}
                 <TextFieldWrapper>
@@ -221,7 +236,7 @@ function UserSignup(props) {
                     <TextField 
                         type="text" 
                         id="username" 
-                        name="username" 
+                        name="UserName" 
                         value={user.username} 
                         onChange={handleChange}
                         placeholder="Must contain at least 8 characters" 
@@ -233,7 +248,7 @@ function UserSignup(props) {
                     <TextField 
                         type="password" 
                         id="password" 
-                        name="password" 
+                        name="Password" 
                         value={user.password} 
                         onChange={handleChange}
                         placeholder="********" 
@@ -259,4 +274,19 @@ function UserSignup(props) {
     )
 }
 
-export default UserSignup
+export default UserSignup;
+
+const StyledSelectList = S.select`
+    width: auto;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #000;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+`;
+
+const StyledOption = S.option`
+    font-size: 16px;
+    color: #000;
+`;

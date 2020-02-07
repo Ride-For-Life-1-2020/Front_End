@@ -1,21 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import {Label} from './../styled-components';
-import { theme } from './../../style';
+import {theme} from './../../style';
 
-const PPWrapper = styled.div`
-    position: relative;
-    width: 165px;
-    height: 180px;
-    overflow: hidden;
-    margin-top: -9px;
-`;
-
-const Div = styled.div`
-    display: block;
-    margin-top: 20px;
-    width: 165px;
-
+const Wrapper = styled.div`
+    
     .btn-upload {
         border: 1px solid ${theme.color.lightGreen};
         padding: 5px 10px;
@@ -40,25 +28,23 @@ const Div = styled.div`
         vertical-align: middle;
         padding: 0 10px;
         text-align: center;
+        cursor: pointer;
+
+        input[type="file"] {
+            display: none;
+        }
     }
 `
 
-const ProfilePictureEditor = (props) => {
+const DropZone = props => {
 
-    const profilePictureRef = useRef();
-
-    const handleUpload = event => {
-        event.preventDefault();
-
-        const PP = profilePictureRef.current;
-        const imageData = PP.getImageAsDataUrl();
-        props.handleUpload(imageData);
+    const handleDragAndDrop = e => {
+        e.preventDefault();
     }
 
-    return (
-        <Div>
-            <Label>Add Profile Picture</Label>
-            <div className="drop-region">
+    return(
+        <Wrapper>
+            <div onDragEnter={handleDragAndDrop}className="drop-region">
                 <div className="drop-message">
                     Drag & Drop images or click to upload
                 </div>
@@ -66,9 +52,9 @@ const ProfilePictureEditor = (props) => {
 
                 </div>
             </div>
-            <button className="btn-upload"  onClick={handleUpload}>Upload</button>
-        </Div>
+        </Wrapper>
     )
 }
 
-export default ProfilePictureEditor;
+export default DropZone;
+

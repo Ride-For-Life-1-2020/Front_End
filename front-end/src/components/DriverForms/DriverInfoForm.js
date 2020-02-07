@@ -9,7 +9,7 @@ import {
     ClearFix,
     Error,
     StyledLink } from './../styled-components'
-import ProfilePictureEditor from "./ProfilePictureEditor"
+import ProfilePictureEditor from "../ProfilePictureSelector/ProfilePictureEditor"
 
  
 
