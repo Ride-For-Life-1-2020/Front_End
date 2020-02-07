@@ -149,7 +149,7 @@ function DriverInfo(props) {
 
                 </TextFieldWrapper>
                 {driverErrors.policyNumberError.length > 1 ? <Error>{driverErrors.policyNumberError}</Error> : null}
-                {/* <ProfilePictureEditor handleUpload={handlePPUpload} /> */}
+                <ProfilePictureEditor handleUpload={handlePPUpload} />
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
             </FormWrapper>

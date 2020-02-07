@@ -16,6 +16,7 @@ const Wrapper = styled.div`
 const MenuItemIcon = styled.div`
     display: flex;
     flex-direction: column;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -96,7 +97,22 @@ const AppBar = ({history,match,location, isLogged}) => {
                     </Link>
                 </Logo>
                 {isLogged &&  
-                    <MenuItemIcon>
+                <MenuItemIcon>
+                    <MenuText>
+                        <NavLink exact to="/">
+                            Home
+                        </NavLink>
+                    </MenuText>
+                    <MenuText>
+                        <NavLink exact to="/profile">
+                            Profile
+                        </NavLink>
+                    </MenuText>
+                    <MenuText>
+                        <NavLink exact to="/search">
+                            Search
+                        </NavLink>
+                    </MenuText>
                     <MenuText>
                         <NavLink exact to="/logout" onClick={handleLogOut}>
                             Logout
@@ -107,6 +123,11 @@ const AppBar = ({history,match,location, isLogged}) => {
                 {!isLogged &&  
                     <RightMenuItems>
                         <MenuItemIcon>
+                        <MenuText>
+                            <NavLink exact to="/">
+                                Home
+                            </NavLink>
+                        </MenuText>
                             <MenuText>
                                 <NavLink exact to="/sign-in">
                                     Sign in

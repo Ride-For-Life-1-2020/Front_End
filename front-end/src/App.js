@@ -10,7 +10,9 @@ import UserSignup from './components/UserSignup';
 import HomePage from './components/HomePage';
 import DriverInfoForm from './components/DriverForms/DriverInfoForm';
 import VehicleInfo from './components/DriverForms/VehicleInfo';
-import ProtectedRoute from './ProtectedRoute';
+import RiderDashboardPage from './components/profile_page/rider_page_components/RiderDashboardPage';
+import {ProtectedRoute} from './ProtectedRoute';
+import SearchPage from './components/SearchPage';
 import axios from 'axios';
 import DriverDashboard from './components/DriverDashboard';
 
@@ -44,6 +46,8 @@ function App() {
     <div className="App">
       <AppBar isLogged={isLogged} />
       <Switch>
+        <ProtectedRoute exact path="/profile" component={RiderDashboardPage} />
+        <ProtectedRoute exact path="/search" component={SearchPage} />
         <Route exact path="/" render={props => <HomePage history={props.history} />} />
         <Route exact path="/signup" render={props => <UserSignup history={props.history}  userType={getUserType()} />} />
         <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
