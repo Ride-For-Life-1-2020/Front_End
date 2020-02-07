@@ -35,7 +35,7 @@ const LoginForm = (props) => {
                 localStorage.setItem('auth-token',  response.data.token);
                 dispatch({type: 'SET_LOGGEDIN_USER', payload:user.UserName});
                 dispatch({type: 'SET_LOGGEDIN', payload: true});
-                props.history.push('/');
+                props.history.push(`/profile/drivers/${user.UserName}`);
             })
             .catch( error => {
                 console.log(error);

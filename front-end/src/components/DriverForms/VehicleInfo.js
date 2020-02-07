@@ -152,7 +152,7 @@ function VehicleInfo(props) {
                 <TextFieldWrapper>
                     <Label htmlFor="Year">Year</Label>
                     <TextField 
-                        type="text"
+                        type="number"
                         id="Year"
                         name="Year"
                         value={vehicle.Year}

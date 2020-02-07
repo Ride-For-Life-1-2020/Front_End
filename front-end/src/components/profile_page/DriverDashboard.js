@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { Container, Button } from './styled-components'
+import { Container, Button } from './../styled-components'
 import { Link } from 'react-router-dom';
 
 const ProfileSection = styled.section`
@@ -96,15 +96,15 @@ const DriverDashboard = () => {
                     <p className="user-info--address">
                         1148 hwy street
                     </p>
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i className="fas fa-map-marker-alt"></i>
                     <p className="user-info--city">
                         Kampala
                     </p>
                 </div>
                 <nav className="driver-menu">
-                    <Link className="driver-menu--item">Home</Link>
-                    <Link className="driver-menu--item">Manage Account</Link>
-                    <Link className="driver-menu--item">Ride History</Link>
+                    <Link to="/" className="driver-menu--item">Home</Link>
+                    <Link to="/" className="driver-menu--item">Manage Account</Link>
+                    <Link to="/" className="driver-menu--item">Ride History</Link>
                 </nav>
                 <div className="dashboard-body">
                     <div className="rider-card">
@@ -112,10 +112,10 @@ const DriverDashboard = () => {
                             Mamm
                         </h3>
                         <p className="rider-card--pickup">
-                            <span>Pickup<i class="fas fa-map-marker-alt"></i></span> 1109 ggg street, Kamoala
+                            <span>Pickup<i className="fas fa-map-marker-alt"></i></span> 1109 ggg street, Kamoala
                         </p>
                         <p className="rider-card--drop-off">
-                            <span>Dropof<i class="fas fa-map-marker-alt"></i></span> 455 aa foo hospital
+                            <span>Dropof<i className="fas fa-map-marker-alt"></i></span> 455 aa foo hospital
                         </p>
                         <Button>Accept Ride</Button>
                     </div>

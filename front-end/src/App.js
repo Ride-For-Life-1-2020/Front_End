@@ -14,7 +14,7 @@ import RiderDashboardPage from './components/profile_page/rider_page_components/
 import {ProtectedRoute} from './ProtectedRoute';
 import SearchPage from './components/SearchPage';
 import axios from 'axios';
-import DriverDashboard from './components/DriverDashboard';
+import DriverDashboard from './components/profile_page/DriverDashboard';
 
 function App() {
   // set up a function to grab the user to see if theyre logged in or now.
@@ -47,6 +47,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/profile" component={RiderDashboardPage} />
         <ProtectedRoute exact path="/search" component={SearchPage} />
+        <ProtectedRoute path="/profile/drivers/:username" component={DriverDashboard} />
         <Route exact path="/" render={props => <HomePage history={props.history} />} />
         <Route exact path="/signup" render={props => <UserSignup history={props.history}  userType={getUserType()} />} />
         <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />

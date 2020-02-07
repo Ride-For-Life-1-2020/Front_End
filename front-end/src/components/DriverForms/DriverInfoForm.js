@@ -55,7 +55,7 @@ function DriverInfo(props) {
         }
 
         if (isErr) {
-            setDriverErrors({...driverErrors, ...errors} )
+            setDriverErrors({...errors} )
         }
 
         return isErr
@@ -97,7 +97,7 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.DateOfBirthError.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
+                {driverErrors?.DateOfBirthError?.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
                <TextFieldWrapper>
                     <Label htmlFor="InsuranceCompany">Insurance Company</Label>
                     <TextField 
@@ -110,11 +110,11 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.InsuranceCompanyError.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
+                {driverErrors?.InsuranceCompanyError?.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="PolicyNumber">Policy Number</Label>
                     <TextField 
-                        type="text"
+                        type="number"
                         id="PolicyNumber"
                         name="PolicyNumber"
                         value={driver.PolicyNumber}
@@ -123,7 +123,7 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.policyNumberError.length > 1 ? <Error>{driverErrors.policyNumberError}</Error> : null}
+                {driverErrors?.policyNumberError?.length > 1 ? <Error>{driverErrors.policyNumberError}</Error> : null}
                 <ProfilePictureEditor username={driver.UserName} />
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
