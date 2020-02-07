@@ -30,7 +30,7 @@ const MenuText = styled.div`
         display: block;
         text-decoration: none;
         color: ${theme.color.lightGreen};
-        padding: 20px 20px;
+        padding: 1.3rem;
         transition: ease-in .3s;
 
         &.sign-up {
