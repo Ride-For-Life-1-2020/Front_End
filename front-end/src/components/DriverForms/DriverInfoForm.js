@@ -19,17 +19,15 @@ function DriverInfo(props) {
     const [driver, setDriver] = useState({
         ...data,
         DateOfBirth: "",
-        LicenseNumber: "",
         InsuranceCompany: "",
         PolicyNumber: "",
         Price: 50,
-        Shift: "8am to 4pm"
+        Shift: "AM"
 
     })
 
     const [driverErrors, setDriverErrors] = useState({
         DateOfBirthError: "",
-        LicenseNumberError: "",
         InsuranceCompanyError: "",
         PolicyNumberError: ""
     })
@@ -39,7 +37,6 @@ function DriverInfo(props) {
 
         const errors = {
             DateOfBirthError: "",
-            LicenseNumberError: "",
             InsuranceCompanyError: "",
             PolicyNumberError: ""
         }
@@ -47,11 +44,6 @@ function DriverInfo(props) {
         if (driver.DateOfBirth.length < 1) {
             isErr = true;
             errors.DateOfBirthError = "Date of Birth is a required field"
-        }
-
-        if (driver.LicenseNumber.length < 1) {
-            isErr = true;
-            errors.LicenseNumberError = "License Number is a required field"
         }
 
         if (driver.InsuranceCompany.length < 1) {
@@ -73,7 +65,11 @@ function DriverInfo(props) {
     }
 
     const handleChange = (e) => {
-        setDriver({...driver, [e.target.name]: e.target.value})
+        if (e.target.name === "PolicyNumber") {
+            setDriver({...driver, [e.target.name]: parseInt(e.target.value)})
+        } else {
+            setDriver({...driver, [e.target.name]: e.target.value})
+        }
     }
 
     const handleClick = e => {
@@ -102,20 +98,7 @@ function DriverInfo(props) {
 
                 </TextFieldWrapper>
                 {driverErrors.DateOfBirthError.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
-                <TextFieldWrapper>
-                    <Label htmlFor="LicenseNumber">License Number</Label>
-                    <TextField 
-                        type="text"
-                        id="LicenseNumber"
-                        name="LicenseNumber"
-                        value={driver.LicenseNumber}
-                        onChange={handleChange}
-                        placeholder="License Number"
-                         />
-
-                </TextFieldWrapper>
-                {driverErrors.LicenseNumberError.length > 1 ? <Error>{driverErrors.LicenseNumberError}</Error> : null}
-                <TextFieldWrapper>
+               <TextFieldWrapper>
                     <Label htmlFor="InsuranceCompany">Insurance Company</Label>
                     <TextField 
                         type="text"

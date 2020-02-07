@@ -87,7 +87,11 @@ function VehicleInfo(props) {
     }
 
     const handleChange = (e) => {
-        setVehicle({...vehicle, [e.target.name]: e.target.value})
+        if (e.target.name === "Year" || e.target.name === "Mileage") {
+            setVehicle({...vehicle, [e.target.name]: parseInt(e.target.value)})
+        } else {
+            setVehicle({...vehicle, [e.target.name]: e.target.value})
+        }
     }
 
     // const handleSubmit = e => {
@@ -207,11 +211,11 @@ function VehicleInfo(props) {
                 </TextFieldWrapper>
                 {vehicleErrors.VinError.length > 1 ? <Error>{vehicleErrors.VinError}</Error> : null}
                 <ClearFix px="10px" />
-                <Checkbox handleChange={handleChange} value={false}>
+                {/* <Checkbox handleChange={handleChange} value={false}>
                     <a href="#">
                         Terms and Conditions
                     </a>
-                </Checkbox>
+                </Checkbox> */}
                 <ClearFix px="15px" />
                 <Button type="submit">Complete</Button>
             </FormWrapper>
