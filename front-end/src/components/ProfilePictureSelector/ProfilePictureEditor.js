@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import {Label} from '../styled-components';
 import { theme } from '../../style';
+import {firestore} from './../../libs/firebase';
 
 const ProfilePictureEditor = (props) => {
 
@@ -11,7 +12,15 @@ const ProfilePictureEditor = (props) => {
 
     const handleUpload = event => {
         event.preventDefault();
-        props.handleUpload(image);
+        const userData = {
+            username: props.username,
+            imageData: image
+        };
+
+        const userImagesRef = firestore.collection('userImages')
+        userImagesRef.add(userData).then(ref => {
+            console.log(ref);
+        })
     }
 
     const openFileSelector = () => {

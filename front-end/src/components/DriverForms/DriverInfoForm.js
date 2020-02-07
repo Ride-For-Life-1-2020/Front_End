@@ -9,9 +9,7 @@ import {
     ClearFix,
     Error,
     StyledLink } from './../styled-components'
-import ProfilePictureEditor from "../ProfilePictureSelector/ProfilePictureEditor"
-import {firestore} from './../../libs/firebase';
- 
+import ProfilePictureEditor from "../ProfilePictureSelector/ProfilePictureEditor" 
 
 function DriverInfo(props) {
 
@@ -79,18 +77,6 @@ function DriverInfo(props) {
         }
     }
 
-    const handlePPUpload = data => {
-        const userData = {
-            username: 'test',
-            imageData: data
-        };
-
-        const userImagesRef = firestore.collection('userImages')
-        userImagesRef.add(userData).then(ref => {
-            console.log(ref);
-        })
-    }
-
     const handleSubmit = e => {
         e.preventDefault()
     }
@@ -138,7 +124,7 @@ function DriverInfo(props) {
 
                 </TextFieldWrapper>
                 {driverErrors.policyNumberError.length > 1 ? <Error>{driverErrors.policyNumberError}</Error> : null}
-                <ProfilePictureEditor handleUpload={handlePPUpload} />
+                <ProfilePictureEditor username={driver.UserName} />
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
             </FormWrapper>

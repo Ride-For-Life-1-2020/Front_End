@@ -52,9 +52,6 @@ function App() {
         <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
         <Route path="/signup/mother" render={props => <MotherSignup {...props} />} />
         <Route exact path="/sign-in" component={LoginForm} />
-        <Route exact path="/signup" render={props => <UserSignup history={props.history}  userType={getUserType()} />} />
-        <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
-        <Route path="/signup/mother" render={props => <MotherSignup />} />
         <Route exact path="/signup/driver/step/1" render={props => <DriverInfoForm {...props} />} />
         <Route path="/signup/driver/step/2" render={props => <VehicleInfo {...props} />} />
         <Route  path="/profile/driver" component={DriverDashboard} />
