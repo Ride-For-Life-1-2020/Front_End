@@ -1,13 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import axios from 'axios';
+import {useSelector} from 'react-redux';
 import S from 'styled-components';
 import RiderProfileInformation from './RiderProfileInformation';
 import DriverCard from './DriverCard';
 import ProfileEditForm from './ProfileEditForm';
+import DeleteButton from '../UserDeleteButton';
 
-const RiderDashboardPage = () => {
+const RiderDashboardPage = (props) => {
 
     const [editProfileIsOpen, setEditProfileIsOpen] = useState(false);
+    const [profileUser, setProfileUser] = useState({})
+
+    const username = useSelector(state => state.root.loggedInUser);
 
     const openProfileEditForm = () => {
         if(editProfileIsOpen === false) {
@@ -16,18 +21,49 @@ const RiderDashboardPage = () => {
             setEditProfileIsOpen(false);
         }
     }
+const handleDeleteUser = () => {
+    axios.delete(`https://rideforlifebackend.herokuapp.com/api/patients/${username}`, {
+        headers: {
+            "content-type": "application/json", // Tell the server we are sending this over as JSON
+            'authorization': localStorage.getItem('auth-token'), // Send the token in the header from the client.
+        }
+    })
+    .then(response =>  {
+        props.history.push('/');
+        console.log(response)
+    })
+    .catch(err => console.log(err));
+}
+    useState( () => {
+        axios.get(`https://rideforlifebackend.herokuapp.com/api/patients/${username}`, {
+            headers: {
+                "content-type": "application/json", // Tell the server we are sending this over as JSON
+                'authorization': localStorage.getItem('auth-token'), // Send the token in the header from the client.
+            }
+        })
+        .then(response => {
+            setProfileUser({...response.data});
+            console.log(response)
+        })
+        .catch( err =>  {
+            props.history.push('/');
+            console.log(err);
+        })
+    }, []);
+    
     return(
         <StyledMain>
             <HeaderContainer>
             <StyledImageContainer>
                 <StyledImage>Profile Image</StyledImage>
             </StyledImageContainer>
-                <StyledName>James Bond</StyledName>
+                <StyledName>{profileUser.FullName}</StyledName>
+                <DeleteButton handleDeleteUser={handleDeleteUser} />
             </HeaderContainer>
             <StyledSection>
             <StyledEditButton onClick={openProfileEditForm}>Edit Profile</StyledEditButton>
-            {editProfileIsOpen ? <ProfileEditForm /> : null}
-                <RiderProfileInformation />
+            {editProfileIsOpen ? <ProfileEditForm setProfileUser={setProfileUser}/> : null}
+                <RiderProfileInformation profileUser={profileUser} />
                 <CardContainer>
                 <StyledTitle>Driver</StyledTitle>
                     <DriverCard driver={{name: 'Dylan', price: '2.00'}}/>

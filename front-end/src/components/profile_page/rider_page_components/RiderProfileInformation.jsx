@@ -2,18 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import S from 'styled-components';
 
-const RiderProfileInformation = () => {
+const RiderProfileInformation = (props) => {
     return(
         <StyledProfileContainer>
             <StyledTitle>Profile Information</StyledTitle>
            <div>
-                <StyledParagraph><StyledSpan>Full Name</StyledSpan>: James Bond </StyledParagraph>
-                <StyledParagraph><StyledSpan>Username</StyledSpan>: Super_Clark</StyledParagraph>
-                <StyledParagraph><StyledSpan>Phone Number</StyledSpan>: 1-111-111-1111</StyledParagraph>
-                <StyledParagraph><StyledSpan>Due Date</StyledSpan>: 01/01/2021</StyledParagraph>
-                <StyledParagraph><StyledSpan>Email</StyledSpan>: FlyHigh@gmail.com</StyledParagraph>
-                <StyledParagraph><StyledSpan>Address</StyledSpan>: 1234 lois ln dr</StyledParagraph>
-                <StyledParagraph><StyledSpan>City</StyledSpan>: Smallvile</StyledParagraph>
+                <StyledParagraph><StyledSpan>Full Name</StyledSpan>: {props.profileUser.FullName} </StyledParagraph>
+                <StyledParagraph><StyledSpan>Username</StyledSpan>: {props.profileUser.UserName}</StyledParagraph>
+                <StyledParagraph><StyledSpan>Phone Number</StyledSpan>: {props.profileUser.PhoneNumber}</StyledParagraph>
+                <StyledParagraph><StyledSpan>Due Date</StyledSpan>: {props.profileUser.DueDate}</StyledParagraph>
+                <StyledParagraph><StyledSpan>Email</StyledSpan>: {props.profileUser.Email}</StyledParagraph>
+                <StyledParagraph><StyledSpan>Address</StyledSpan>: {props.profileUser.Address}</StyledParagraph>
+                <StyledParagraph><StyledSpan>City</StyledSpan>: {props.profileUser.City}</StyledParagraph>
           </div>
         </StyledProfileContainer>
 
