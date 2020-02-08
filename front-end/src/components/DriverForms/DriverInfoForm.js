@@ -15,17 +15,17 @@ import ProfilePictureEditor from "../ProfilePictureSelector/ProfilePictureEditor
 
 const StyledSelectList = S.select`
     width: auto;
-    border: none;
-    font-size: 24px;
-    background-color: #333;
-    color: #fff;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #000;
     border-radius: 5px;
-    padding: 10px
+    padding: 10px;
+    cursor: pointer;
 `;
 
 const StyledOption = S.option`
-    font-size: 24px;
-    color: #fff;
+    font-size: 16px;
+    color: #000;
 `;
 function DriverInfo(props) {
 
