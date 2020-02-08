@@ -9,8 +9,22 @@ import {
     ClearFix,
     Error,
     StyledLink } from './../styled-components'
+import S from 'styled-components'
 
- 
+const StyledSelectList = S.select`
+    width: auto;
+    border: none;
+    font-size: 24px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px
+`;
+
+const StyledOption = S.option`
+    font-size: 24px;
+    color: #fff;
+`;
 
 function DriverInfo(props) {
 
@@ -21,8 +35,8 @@ function DriverInfo(props) {
         DateOfBirth: "",
         InsuranceCompany: "",
         PolicyNumber: "",
-        Price: 50,
-        Shift: "AM"
+        Price: 25,
+        Shift: "8:00AM to 4:00PM"
 
     })
 
@@ -65,7 +79,7 @@ function DriverInfo(props) {
     }
 
     const handleChange = (e) => {
-        if (e.target.name === "PolicyNumber") {
+        if (e.target.name === "PolicyNumber" || e.target.name === "Price") {
             setDriver({...driver, [e.target.name]: parseInt(e.target.value)})
         } else {
             setDriver({...driver, [e.target.name]: e.target.value})
@@ -124,6 +138,31 @@ function DriverInfo(props) {
 
                 </TextFieldWrapper>
                 {driverErrors.PolicyNumberError.length > 1 ? <Error>{driverErrors.PolicyNumberError}</Error> : null}
+                <TextFieldWrapper>
+                    <Label htmlFor="Price">Price</Label>
+                        <StyledSelectList id="Price" name="Price" value={driver.Price} type="select" onChange={handleChange} >
+                            <StyledOption value="25">$25</StyledOption>
+                            <StyledOption value="30">$30</StyledOption>
+                            <StyledOption value="35">$35</StyledOption>
+                            <StyledOption value="40">$40</StyledOption>
+                            <StyledOption value="45">$45</StyledOption>
+                            <StyledOption value="50">$50</StyledOption>
+                            <StyledOption value="55">$55</StyledOption>
+                            <StyledOption value="60">$60</StyledOption>
+                            <StyledOption value="65">$65</StyledOption>
+                            <StyledOption value="70">$70</StyledOption>
+                            <StyledOption value="75">$75</StyledOption>
+                    </StyledSelectList> 
+                </TextFieldWrapper>
+                <TextFieldWrapper>
+                    <Label htmlFor="Shift">Shift</Label>
+                        <StyledSelectList id="Shift" name="Shift" value={driver.Shift} type="select" onChange={handleChange} >
+                            <StyledOption value="8:00PM to 4:00PM">8:00AM to 4:00PM</StyledOption>
+                            <StyledOption value="4:00PM to 12:00AM">4:00PM to 12:00AM</StyledOption>
+                            <StyledOption value="12:00AM to 8:00AM">12:00AM to 8:00AM</StyledOption>
+                    </StyledSelectList> 
+                </TextFieldWrapper>
+                
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
             </FormWrapper>

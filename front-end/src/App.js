@@ -13,7 +13,9 @@ import VehicleInfo from './components/DriverForms/VehicleInfo';
 import RiderDashboardPage from './components/profile_page/rider_page_components/RiderDashboardPage';
 import {ProtectedRoute} from './ProtectedRoute';
 import SearchPage from './components/SearchPage';
+import DriverCard from './components/profile_page/rider_page_components/DriverCard';
 import axios from 'axios';
+import DriverInfo from './components/DriverForms/DriverInfoForm';
 
 function App() {
   // set up a function to grab the user to see if theyre logged in or now.
