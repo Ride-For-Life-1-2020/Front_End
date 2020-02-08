@@ -5,6 +5,7 @@ import { toWords } from './../../../libs/utils';
 
 const DataViewer = props => {
     const [isEdit, setIsEdit] = useState(false);
+
     return(
         <Wrapper>    
             <div className="header">

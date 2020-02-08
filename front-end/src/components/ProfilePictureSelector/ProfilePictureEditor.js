@@ -7,6 +7,7 @@ import {firestore} from './../../libs/firebase';
 const ProfilePictureEditor = (props) => {
 
     const [image, setImage] = useState("");
+    const [isUploaded, setIsUploaded] = useState(false);
 
     const profilePictureRef = useRef();
 
@@ -19,7 +20,7 @@ const ProfilePictureEditor = (props) => {
 
         const userImagesRef = firestore.collection('userImages')
         userImagesRef.add(userData).then(ref => {
-            console.log(ref);
+            setIsUploaded(true);
         })
     }
 
@@ -48,6 +49,10 @@ const ProfilePictureEditor = (props) => {
         <Div>
             <Label>Add Profile Picture</Label>
             <div onDragEnter={handleDragAndDrop} onDragLeave={handleDragAndDrop} onDragOver={handleDragAndDrop} onDrop={handleDragAndDrop} onClick={openFileSelector} className={image ? "drop-region has-image" : "drop-region"}>
+                <div className={isUploaded ? 'success-upload' : 'display-none'}>
+                    <i className="far fa-check-circle"></i>
+                    <span>Uploaded</span>
+                </div>
                 <div className={image ? "display-none" : "drop-message"}>
                     Drag & Drop images or click to upload
                     <input onChange={handleChange} ref={profilePictureRef} type="file" accept="image/*" multiple={false} />
@@ -56,7 +61,7 @@ const ProfilePictureEditor = (props) => {
                     <img className={image ? "show-image": "display-none"} src={image} alt="profile" />
                 </div>
             </div>
-            <button className="btn-upload"  onClick={handleUpload}>Upload</button>
+            <button disabled={isUploaded} className="btn-upload"  onClick={handleUpload}>Upload</button>
         </Div>
     )
 }
@@ -79,6 +84,13 @@ const Div = styled.div`
             background-color: ${theme.color.lightGreen};
             color: #fff;
         }
+
+        :disabled {
+            color: #ccc;
+            border-color: #ccc;
+            cursor: not-allowed;
+            background-color: #fff;
+        }
     }
     .drop-region {
         position: relative;
@@ -90,7 +102,8 @@ const Div = styled.div`
         vertical-align: middle;
         padding: 0 10px;
         text-align: center;
-        cursor: pointer;
+        overflow: hidden;
+        cursor: move;
 
         input[type="file"] {
             display: none;
@@ -99,13 +112,40 @@ const Div = styled.div`
             border: none;
             padding: 0;
         }
+
+        .success-upload {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 160px;
+            background-color: rgba(0,0,0,0.7);
+            font-size: 1.6rem;
+            color: ${theme.color.lightGreen};
+            transition: all .3s
+            display: block;
+            span {
+                display: block;
+                color: #fff;
+                font-size: 0.6rem;
+                text-transform: uppercase;
+                margin-top: 10px;
+            }
+        }
     }
     .display-none {
         display: none;
     }
     .show-image {
         display: block;
-        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        width: 160px;
+        height: 160px;
     }
 `
 
