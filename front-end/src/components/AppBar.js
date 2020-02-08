@@ -99,11 +99,6 @@ const AppBar = ({history,match,location, isLogged}) => {
                 {isLogged &&  
                 <MenuItemIcon>
                     <MenuText>
-                        <NavLink exact to="/">
-                            Home
-                        </NavLink>
-                    </MenuText>
-                    <MenuText>
                         <NavLink exact to="/profile">
                             Profile
                         </NavLink>
