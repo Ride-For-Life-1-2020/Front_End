@@ -6,22 +6,23 @@ const ManageAccount = (props) => {
     const [isEdit, setIsEdit] = useState(false);
 
     const {
-    FullName,
-    Email,
-    PhoneNumber, 
-    City, 
-    UserName, 
-    DateOfBirth, 
-    Shift, 
-    Price, 
-    InsuranceCompany, 
-    PolicyNumber, 
-    VehicleModel, 
-    VehicleMake, 
-    Year, 
-    Mileage, 
-    LicensePlate, 
-    Vin} = props || ''
+        FullName,
+        Email,
+        PhoneNumber, 
+        City, 
+        UserName, 
+        DateOfBirth, 
+        Shift, 
+        Price, 
+        InsuranceCompany, 
+        PolicyNumber, 
+        VehicleModel, 
+        VehicleMake, 
+        Year, 
+        Mileage, 
+        LicensePlate, 
+        Vin
+    } = props || ''
 
     const propsToArray = () => {
         return [

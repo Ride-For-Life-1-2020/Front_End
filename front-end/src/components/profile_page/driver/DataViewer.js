@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { H2, Button } from './../../styled-components';
+import { toWords } from './../../../libs/utils';
 
 const DataViewer = props => {
     const [isEdit, setIsEdit] = useState(false);
- 
     return(
         <Wrapper>    
             <div className="header">
@@ -25,7 +25,7 @@ const DataViewer = props => {
 const DataViewerItem = ({name, value}) => {
     return(
         <li className="list-item">
-            <span className="label">{name}</span>
+            <span className="label">{toWords(name).join(' ')}</span>
             <span className="column-separator">:</span>
             {value}
         </li> 
