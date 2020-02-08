@@ -88,7 +88,7 @@ const AppBar = ({history,match,location, isLogged}) => {
         localStorage.removeItem('auth-token');
         localStorage.removeItem('profile-url');
         dispatch({type: 'SET_LOGGEDIN', payload: false});
-        window.location.href = "/sign-in";
+        history.push("/sign-in");
     }
     return(
         <Wrapper>
