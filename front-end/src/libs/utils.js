@@ -17,3 +17,27 @@ export const toWords = input => {
 
     return input.match(regex);
 }
+
+// export const resizeImage = (img, imageData) => {
+//     img.src = imageData;
+
+//     const canvas = document.createElemt("canvas");
+//     const context = canvas.getContext("2d");
+
+//     const MAX_WIDTH = 500;
+//     const MAX_HEIGHT = 500;
+
+//     let width = img.width;
+//     let height = img.height;
+    
+//     if (width > height) {
+//         if (width > MAX_WIDTH) {
+//             height *= MAX_WIDTH / width;
+//             width = MAX_WIDTH;
+//         }
+//     } else {
+//         if (height > MAX_HEIGHT) {
+//             width
+//         }
+//     }
+// }
