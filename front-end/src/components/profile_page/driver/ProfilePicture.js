@@ -20,16 +20,26 @@ const ProfilePicture = ({username}) => {
             });
     }, [])
 
-    return <Img src={image} alt={username} />
-
+    return (
+        <CircularWrapper>
+            <Img src={image} alt={username} />
+        </CircularWrapper>
+    );
 }
 
-const Img = styled.img`
+const CircularWrapper = styled.div`
     display: block;
-    margin: 0 auto;
+    position: relative;
     width: 160px;
+    height: 160px;
+    overflow: hidden;
     border-radius: 50%;
+    margin: 0 auto;
     transition: all .3s;
+`
+
+const Img = styled.img`
+    width: 100%;
 `
 
 export default ProfilePicture;
