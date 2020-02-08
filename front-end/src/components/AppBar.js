@@ -79,12 +79,14 @@ const styles = {
 
 const AppBar = ({history,match,location, isLogged}) => {
     const classes = styles;
+    const PROFILE_URL = localStorage.getItem('profile-url');
     // Grab dispatch function
     const dispatch = useDispatch();
     // Handle Log user out.
     const handleLogOut = (event) => {
         event.preventDefault();
         localStorage.removeItem('auth-token');
+        localStorage.removeItem('profile-url');
         dispatch({type: 'SET_LOGGEDIN', payload: false});
         window.location.href = "/sign-in";
     }
@@ -99,7 +101,7 @@ const AppBar = ({history,match,location, isLogged}) => {
                 {isLogged &&  
                 <MenuItemIcon>
                     <MenuText>
-                        <NavLink exact to="/profile">
+                        <NavLink exact to={PROFILE_URL ? PROFILE_URL : ""}>
                             Profile
                         </NavLink>
                     </MenuText>

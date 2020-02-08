@@ -38,8 +38,7 @@ function App() {
 
 
   const getUserType = () => isMother ? 'mother' : 'driver';
-
-  console.log(state);
+  
   return (
 
     <div className="App">
