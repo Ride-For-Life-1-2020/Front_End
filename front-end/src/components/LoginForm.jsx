@@ -56,7 +56,6 @@ const LoginForm = (props) => {
                 dispatch({type: 'SET_LOGGEDIN', payload: true});
                 localStorage.setItem('profile-url', `/profile`);
                 props.history.push('/');
-                props.history.push('/');
             })
             .catch( error => {
                 console.log(error);
