@@ -10,7 +10,6 @@ import {
     ClearFix,
     Checkbox,
     Error,
-    StyledLink
  } from './../styled-components'
  import axios from 'axios';
 
@@ -94,14 +93,8 @@ function VehicleInfo(props) {
         }
     }
 
-    // const handleSubmit = e => {
-    //     e.preventDefault();
-    //     const err = validate()
-    //     if (!err) {
-    //         props.handleUserFormSubmit({data: vehicle});
-    //     }
-    // }
     const handleSubmit = (e) => {
+        e.preventDefault();
         const fireApiCall = () => {
             const err = validate();
             if(err === true) {
@@ -116,7 +109,7 @@ function VehicleInfo(props) {
                   }
                 })
                 .then(response => {
-                    console.log(response);
+                    props.history.push(`/sign-in`);
                 })
                 .catch( error => {
                     console.log(error);
@@ -125,12 +118,11 @@ function VehicleInfo(props) {
         }
         fireApiCall();
     }
-    console.log(vehicle)
 
     return (
         <Container>
             <ClearFix px="15px" />
-            <FormWrapper onSubmit={handleSubmit}>
+            <FormWrapper id="driver-form" onSubmit={handleSubmit}>
                 <Header>Vehicle Information</Header>
                 <TextFieldWrapper>
                     <Label htmlFor="VehicleMake">Vehicle Make</Label>
@@ -161,7 +153,7 @@ function VehicleInfo(props) {
                 <TextFieldWrapper>
                     <Label htmlFor="Year">Year</Label>
                     <TextField 
-                        type="text"
+                        type="number"
                         id="Year"
                         name="Year"
                         value={vehicle.Year}

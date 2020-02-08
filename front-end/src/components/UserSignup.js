@@ -18,7 +18,7 @@ function UserSignup(props) {
         FullName: "",
         Email: "",
         PhoneNumber: "",
-        City_ID: "",
+        City_ID: 1,
         UserName: "",
         Password: "",
     });
@@ -29,7 +29,6 @@ function UserSignup(props) {
         FullNameError: "",
         EmailError: "",
         PhoneNumberError: "",
-        City_IDError: "",
         UserNameError: "",
         PasswordError: "",
         ConfirmPasswordError: ""
@@ -65,7 +64,6 @@ function UserSignup(props) {
             FullNameError: "",
             EmailError: "",
             PhoneNumberError: "",
-            City_IDError: "",
             UserNameError: "",
             PasswordError: "",
             ConfirmPasswordError: ""
@@ -85,11 +83,6 @@ function UserSignup(props) {
         if (user.PhoneNumber.length < 10) {
             isErr = true;
             errors.PhoneNumberError = "*Please enter a phone number in this format (+256 772-000-0000)"
-        }
-
-        if (user.City_ID === "") {
-            isErr = true;
-            errors.City_IDError = "*Please select a city from the list"
         }
 
         if (user.UserName.length < 8) {
@@ -174,14 +167,6 @@ function UserSignup(props) {
                 {errors.PhoneNumberError.length > 1 ? <Error>{errors.PhoneNumberError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="city">City</Label>
-                    {/* <TextField 
-                        type="text" 
-                        id="city" 
-                        name="city" 
-                        value={user.city} 
-                        onChange={handleChange} 
-                        placeholder="City"
-                    /> */}
                         <StyledSelectList id="city" name="City_ID" value={user.City_ID} type="select" onChange={handleChange} >
                             <StyledOption value="1">Kampala</StyledOption>
                             <StyledOption value="2">Gulu</StyledOption>
@@ -195,7 +180,6 @@ function UserSignup(props) {
                             <StyledOption value="10">Masaka</StyledOption>
                     </StyledSelectList> 
                 </TextFieldWrapper>
-                {errors.City_IDError.length > 1 ? <Error>{errors.City_IDError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="UserName">User Name</Label>
                     <TextField 
@@ -243,15 +227,15 @@ export default UserSignup;
 
 const StyledSelectList = S.select`
     width: auto;
-    border: none;
-    font-size: 24px;
-    background-color: #333;
-    color: #fff;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #000;
     border-radius: 5px;
-    padding: 10px
+    padding: 10px;
+    cursor: pointer;
 `;
 
 const StyledOption = S.option`
-    font-size: 24px;
-    color: #fff;
+    font-size: 16px;
+    color: #000;
 `;

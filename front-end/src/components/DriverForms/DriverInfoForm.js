@@ -10,8 +10,23 @@ import {
     Error,
     StyledLink } from './../styled-components'
 
- 
+import S from 'styled-components'
+import ProfilePictureEditor from "../ProfilePictureSelector/ProfilePictureEditor" 
 
+const StyledSelectList = S.select`
+    width: auto;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #000;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+`;
+
+const StyledOption = S.option`
+    font-size: 16px;
+    color: #000;
+`;
 function DriverInfo(props) {
 
     const data = props.location.state.user
@@ -21,8 +36,9 @@ function DriverInfo(props) {
         DateOfBirth: "",
         InsuranceCompany: "",
         PolicyNumber: "",
-        Price: 50,
-        Shift: "AM"
+        Price: 25,
+        Shift: "8:00AM to 4:00PM"
+
 
     })
 
@@ -57,7 +73,7 @@ function DriverInfo(props) {
         }
 
         if (isErr) {
-            setDriverErrors({...driverErrors, ...errors} )
+            setDriverErrors({...errors} )
         }
 
         return isErr
@@ -65,7 +81,7 @@ function DriverInfo(props) {
     }
 
     const handleChange = (e) => {
-        if (e.target.name === "PolicyNumber") {
+        if (e.target.name === "PolicyNumber" || e.target.name === "Price") {
             setDriver({...driver, [e.target.name]: parseInt(e.target.value)})
         } else {
             setDriver({...driver, [e.target.name]: e.target.value})
@@ -73,18 +89,20 @@ function DriverInfo(props) {
     }
 
     const handleClick = e => {
-        
         const err = validate();
         if (err){
             e.preventDefault();
         }
     }
 
-    console.log(driver)
+    const handleSubmit = e => {
+        e.preventDefault()
+    }
+
     return (
         <Container>
             <ClearFix px="15px" />
-            <FormWrapper>
+            <FormWrapper onSubmit={handleSubmit}>
                 <Header>Driver Information (cont.)</Header>
                 <TextFieldWrapper>
                     <Label htmlFor="DateOfBirth">Date of Birth</Label>
@@ -97,7 +115,7 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.DateOfBirthError.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
+                {driverErrors?.DateOfBirthError?.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
                <TextFieldWrapper>
                     <Label htmlFor="InsuranceCompany">Insurance Company</Label>
                     <TextField 
@@ -110,11 +128,11 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.InsuranceCompanyError.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
+                {driverErrors?.InsuranceCompanyError?.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="PolicyNumber">Policy Number</Label>
                     <TextField 
-                        type="text"
+                        type="number"
                         id="PolicyNumber"
                         name="PolicyNumber"
                         value={driver.PolicyNumber}
@@ -124,6 +142,32 @@ function DriverInfo(props) {
 
                 </TextFieldWrapper>
                 {driverErrors.PolicyNumberError.length > 1 ? <Error>{driverErrors.PolicyNumberError}</Error> : null}
+                <TextFieldWrapper>
+                    <Label htmlFor="Price">Price</Label>
+                        <StyledSelectList id="Price" name="Price" value={driver.Price} type="select" onChange={handleChange} >
+                            <StyledOption value="25">$25</StyledOption>
+                            <StyledOption value="30">$30</StyledOption>
+                            <StyledOption value="35">$35</StyledOption>
+                            <StyledOption value="40">$40</StyledOption>
+                            <StyledOption value="45">$45</StyledOption>
+                            <StyledOption value="50">$50</StyledOption>
+                            <StyledOption value="55">$55</StyledOption>
+                            <StyledOption value="60">$60</StyledOption>
+                            <StyledOption value="65">$65</StyledOption>
+                            <StyledOption value="70">$70</StyledOption>
+                            <StyledOption value="75">$75</StyledOption>
+                    </StyledSelectList> 
+                </TextFieldWrapper>
+                <TextFieldWrapper>
+                    <Label htmlFor="Shift">Shift</Label>
+                        <StyledSelectList id="Shift" name="Shift" value={driver.Shift} type="select" onChange={handleChange} >
+                            <StyledOption value="8:00PM to 4:00PM">8:00AM to 4:00PM</StyledOption>
+                            <StyledOption value="4:00PM to 12:00AM">4:00PM to 12:00AM</StyledOption>
+                            <StyledOption value="12:00AM to 8:00AM">12:00AM to 8:00AM</StyledOption>
+                    </StyledSelectList> 
+                </TextFieldWrapper>
+                {driverErrors?.policyNumberError?.length > 1 ? <Error>{driverErrors.policyNumberError}</Error> : null}
+                <ProfilePictureEditor username={driver.UserName} />
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
             </FormWrapper>
