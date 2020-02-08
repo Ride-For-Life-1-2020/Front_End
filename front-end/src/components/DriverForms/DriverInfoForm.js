@@ -9,7 +9,9 @@ import {
     ClearFix,
     Error,
     StyledLink } from './../styled-components'
+
 import S from 'styled-components'
+import ProfilePictureEditor from "../ProfilePictureSelector/ProfilePictureEditor" 
 
 const StyledSelectList = S.select`
     width: auto;
@@ -25,7 +27,6 @@ const StyledOption = S.option`
     font-size: 24px;
     color: #fff;
 `;
-
 function DriverInfo(props) {
 
     const data = props.location.state.user
@@ -37,6 +38,7 @@ function DriverInfo(props) {
         PolicyNumber: "",
         Price: 25,
         Shift: "8:00AM to 4:00PM"
+
 
     })
 
@@ -71,7 +73,7 @@ function DriverInfo(props) {
         }
 
         if (isErr) {
-            setDriverErrors({...driverErrors, ...errors} )
+            setDriverErrors({...errors} )
         }
 
         return isErr
@@ -87,18 +89,20 @@ function DriverInfo(props) {
     }
 
     const handleClick = e => {
-        
         const err = validate();
         if (err){
             e.preventDefault();
         }
     }
 
-    console.log(driver)
+    const handleSubmit = e => {
+        e.preventDefault()
+    }
+
     return (
         <Container>
             <ClearFix px="15px" />
-            <FormWrapper>
+            <FormWrapper onSubmit={handleSubmit}>
                 <Header>Driver Information (cont.)</Header>
                 <TextFieldWrapper>
                     <Label htmlFor="DateOfBirth">Date of Birth</Label>
@@ -111,7 +115,7 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.DateOfBirthError.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
+                {driverErrors?.DateOfBirthError?.length > 1 ? <Error>{driverErrors.DateOfBirthError}</Error> : null}
                <TextFieldWrapper>
                     <Label htmlFor="InsuranceCompany">Insurance Company</Label>
                     <TextField 
@@ -124,11 +128,11 @@ function DriverInfo(props) {
                          />
 
                 </TextFieldWrapper>
-                {driverErrors.InsuranceCompanyError.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
+                {driverErrors?.InsuranceCompanyError?.length > 1 ? <Error>{driverErrors.InsuranceCompanyError}</Error> : null}
                 <TextFieldWrapper>
                     <Label htmlFor="PolicyNumber">Policy Number</Label>
                     <TextField 
-                        type="text"
+                        type="number"
                         id="PolicyNumber"
                         name="PolicyNumber"
                         value={driver.PolicyNumber}
@@ -162,7 +166,8 @@ function DriverInfo(props) {
                             <StyledOption value="12:00AM to 8:00AM">12:00AM to 8:00AM</StyledOption>
                     </StyledSelectList> 
                 </TextFieldWrapper>
-                
+                {driverErrors?.policyNumberError?.length > 1 ? <Error>{driverErrors.policyNumberError}</Error> : null}
+                <ProfilePictureEditor username={driver.UserName} />
                 <ClearFix px="15px" />
                 <StyledLink onClick={handleClick} to={{ pathname: '/signup/driver/step/2', state: { driver }}}>Next</StyledLink>
             </FormWrapper>

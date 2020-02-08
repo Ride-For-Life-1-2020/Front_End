@@ -15,7 +15,7 @@ import {ProtectedRoute} from './ProtectedRoute';
 import SearchPage from './components/SearchPage';
 import DriverCard from './components/profile_page/rider_page_components/DriverCard';
 import axios from 'axios';
-import DriverInfo from './components/DriverForms/DriverInfoForm';
+import DriverDashboard from './components/profile_page/driver/DriverDashboard';
 
 function App() {
   // set up a function to grab the user to see if theyre logged in or now.
@@ -23,8 +23,6 @@ function App() {
 
   const state = useSelector(state => state);
   const isLogged = useSelector(state => state.root.isLoggedIn);
-  const [newUserInfo, setNewUserInfo] = useState({})
-
   // useEffect( () => {
   //   axios.get('/login')
   //   .then( response => {
@@ -42,11 +40,6 @@ function App() {
 
   const getUserType = () => isMother ? 'mother' : 'driver';
 
-
-  const handleUserFormSubmit = data => {
-    // setNewUserInfo(data.data);
-  }
-  
   console.log(state);
   return (
 
@@ -55,16 +48,15 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/profile" component={RiderDashboardPage} />
         <ProtectedRoute exact path="/search" component={SearchPage} />
+        <ProtectedRoute path="/profile/drivers/:username" component={DriverDashboard} />
         <Route exact path="/" render={props => <HomePage history={props.history} />} />
-        <Route exact path="/signup" render={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
+        <Route exact path="/signup" render={props => <UserSignup history={props.history}  userType={getUserType()} />} />
         <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
-        <Route path="/signup/mother" render={props => <MotherSignup {...props} handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route path="/signup/mother" render={props => <MotherSignup {...props} />} />
         <Route exact path="/sign-in" component={LoginForm} />
-        <Route exact path="/signup" render={props => <UserSignup history={props.history} handleUserFormSubmit={handleUserFormSubmit}  userType={getUserType()} />} />
-        <Route path="/signup/whoami" render={props => <WhoAmI history={props.history} onUserType={onUserType} />} />
-        <Route path="/signup/mother" render={props => <MotherSignup handleUserFormSubmit={handleUserFormSubmit} />} />
-        <Route exact path="/signup/driver/step/1" render={props => <DriverInfoForm {...props} handleUserFormSubmit={handleUserFormSubmit} />} />
-        <Route path="/signup/driver/step/2" render={props => <VehicleInfo {...props} handleUserFormSubmit={handleUserFormSubmit} />} />
+        <Route exact path="/signup/driver/step/1" render={props => <DriverInfoForm {...props} />} />
+        <Route path="/signup/driver/step/2" render={props => <VehicleInfo {...props} />} />
+        <Route  path="/profile/driver" component={DriverDashboard} />
        </Switch>
       <Footer />
     </div>

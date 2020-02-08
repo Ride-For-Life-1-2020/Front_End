@@ -76,7 +76,7 @@ const MotherSignup = props => {
         return isErr
     }
 
-  
+    /** POST REQUEST */
     const handleSubmit = (e) => {
         const fireApiCall = () => {
             const err = validate();

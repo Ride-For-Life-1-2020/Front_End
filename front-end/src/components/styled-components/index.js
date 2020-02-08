@@ -172,6 +172,17 @@ export const Button = styled.button`
     transition: ease-in .2s;
     color: white;
 
+    &.btn-edit {
+        width: 100px;
+        padding: 0;
+        height: 40px;
+        margin-top: 20px;
+
+        @media (min-width: 600px) {
+            width: 100px;
+        }
+    }
+
     :hover {
         background-color: ${theme.color.darkerGreen};
     }

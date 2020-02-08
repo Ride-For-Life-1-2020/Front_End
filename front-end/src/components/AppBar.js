@@ -30,7 +30,7 @@ const MenuText = styled.div`
         display: block;
         text-decoration: none;
         color: ${theme.color.lightGreen};
-        padding: 20px 20px;
+        padding: 1.3rem;
         transition: ease-in .3s;
 
         &.sign-up {
@@ -98,11 +98,6 @@ const AppBar = ({history,match,location, isLogged}) => {
                 </Logo>
                 {isLogged &&  
                 <MenuItemIcon>
-                    <MenuText>
-                        <NavLink exact to="/">
-                            Home
-                        </NavLink>
-                    </MenuText>
                     <MenuText>
                         <NavLink exact to="/profile">
                             Profile

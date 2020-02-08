@@ -7,6 +7,7 @@ body, html {
   padding: 50px;
   font-family: 'Montserrat', sans-serif;
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -50,7 +51,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-input, textarea {
+input, textarea, select {
   background: none;
   outline: none;
   cursor: text;
@@ -63,3 +64,4 @@ button {
   outline: none;
   cursor: pointer;
 }
+
